@@ -20,12 +20,4 @@ public class Trip {
         //To-Do set location
         tripMembers = new ArrayList<Person>();
     }
-
-    public void addMember(String name) {
-        tripMembers.add(new Person(name));
-    }
-
-    public void addMember(String name, Location home) {
-        tripMembers.add(new Person(name, home));
-    }
 }
