@@ -16,4 +16,9 @@ public class Budget {
         amountSpent = 0;
         payments = new ArrayList<Payment>();
     }
+
+    public void addPayment(Person personPaying, double amount, String description) {
+        amountSpent += amount;
+        payments.add(new Payment(personPaying, amount, description));
+    }
 }
