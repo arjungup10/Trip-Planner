@@ -13,12 +13,14 @@ public class Trip {
     private Budget tripBudget;
     private Location tripLocation;
     private List tripMembers;
+    private List events;
 
     public Trip(String name, double maxBudget, Location tripLocation) {
         tripName = name;
         tripBudget = new Budget(maxBudget);
         //To-Do set location
         tripMembers = new ArrayList<Person>();
+        events = new ArrayList<Event>();
     }
 
     public void addMember(String name) {
@@ -27,5 +29,8 @@ public class Trip {
 
     public void addMember(String name, Location home) {
         tripMembers.add(new Person(name, home));
+    }
+
+    public void addEvent(String name, int startHour, int startMin, int endHour, int endMin, Location eventLocation) {
     }
 }
