@@ -21,4 +21,28 @@ public class Budget {
         amountSpent += amount;
         payments.add(new Payment(personPaying, amount, description));
     }
+
+    public double getMaxBudget() {
+        return maxBudget;
+    }
+
+    public void setMaxBudget(double maxBudget) {
+        this.maxBudget = maxBudget;
+    }
+
+    public double getAmountSpent() {
+        return amountSpent;
+    }
+
+    public void setAmountSpent(double amountSpent) {
+        this.amountSpent = amountSpent;
+    }
+
+    public List getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List payments) {
+        this.payments = payments;
+    }
 }

@@ -41,4 +41,20 @@ public class Trip {
     public void addEvent(String name, int startHour, int startMin, int endHour, int endMin, Location eventLocation) {
         //To-Do
     }
+
+    public String getTripName() {
+        return tripName;
+    }
+
+    public void setTripName(String tripName) {
+        this.tripName = tripName;
+    }
+
+    public Budget getTripBudget() {
+        return tripBudget;
+    }
+
+    public void setTripBudget(Budget tripBudget) {
+        this.tripBudget = tripBudget;
+    }
 }
