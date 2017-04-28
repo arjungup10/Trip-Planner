@@ -15,6 +15,13 @@ public class Trip {
     private List tripMembers;
     private List events;
 
+    public Trip(String name, double maxBudget) {
+        tripName = name;
+        tripBudget = new Budget(maxBudget);
+        tripMembers = new ArrayList<Person>();
+        events = new ArrayList<Event>();
+    }
+
     public Trip(String name, double maxBudget, Location tripLocation) {
         tripName = name;
         tripBudget = new Budget(maxBudget);

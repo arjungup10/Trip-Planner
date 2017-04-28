@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public class EventActivity extends Activity {
+public class TripActivity extends Activity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -15,7 +15,7 @@ public class EventActivity extends Activity {
         String myDataset[] = {"hello", "world"};
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
+        setContentView(R.layout.activity_trip);
         mRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
 
         // use this setting to improve performance if you know that changes
@@ -27,7 +27,7 @@ public class EventActivity extends Activity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new EventAdapter(myDataset);
+        mAdapter = new TripAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
     }
 }
