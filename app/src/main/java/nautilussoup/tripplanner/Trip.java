@@ -32,5 +32,6 @@ public class Trip {
     }
 
     public void addEvent(String name, int startHour, int startMin, int endHour, int endMin, Location eventLocation) {
+        //To-Do
     }
 }
