@@ -34,23 +34,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         this.trips = trips;
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-//    public static class ViewHolder extends RecyclerView.ViewHolder {
-//        // each data item is just a string in this case
-//        public TextView mTextView;
-//        public ViewHolder(TextView v) {
-//            super(v);
-//            mTextView = (TextView) v.findViewById(R.id.testView);
-//        }
-//    }
-
-//    // Provide a suitable constructor (depends on the kind of dataset)
-//    public TripAdapter(String[] myDataset) {
-//        mDataset = myDataset;
-//    }
-
     // Create new views (invoked by the layout manager)
     @Override
     public TripViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -63,7 +46,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     @Override
     public void onBindViewHolder(TripViewHolder tripViewHolder, int i) {
         tripViewHolder.tripName.setText(trips.get(i).getTripName());
-        tripViewHolder.tripBudget.setText(Double.toString(trips.get(i).getTripBudget().getMaxBudget()));
+        tripViewHolder.tripBudget.setText("Budget: " + Double.toString(trips.get(i).getTripBudget().getMaxBudget()));
     }
 
     @Override
