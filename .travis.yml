@@ -5,9 +5,8 @@ sudo: false
 addons:
   sonarqube:
     organization: "305"
-script:
- - sonar-scanner
- 
+
+
 before_cache:
  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -52,3 +51,5 @@ before_script:
   #- adb shell input keyevent 82 &
 
 script: ./gradlew clean build
+script:
+ - sonar-scanner
