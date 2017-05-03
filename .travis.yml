@@ -2,6 +2,12 @@ language: android
 jdk: oraclejdk8
 sudo: false
 
+addons:
+  sonarqube:
+    organization: "305"
+script:
+ - sonar-scanner
+ 
 before_cache:
  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
