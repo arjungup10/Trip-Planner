@@ -37,7 +37,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     // Create new views (invoked by the layout manager)
     @Override
     public TripViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.testlayout, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_trip, viewGroup, false);
         TripViewHolder pvh = new TripViewHolder(v);
         return pvh;
     }
