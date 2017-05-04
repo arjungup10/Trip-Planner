@@ -52,4 +52,5 @@ before_script:
 
 script: ./gradlew clean build
 script:
- - sonar-scanner
+   - sonar-scanner
+   #./gradlew clean assembleDebug jacocoTestDebugUnitTestReport sonarqube
