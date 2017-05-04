@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/createEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
 
-    </TextView>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="?attr/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
-</LinearLayout>
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+
+        <EditText
+            android:id="@+id/Title"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appbar"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="40sp"
+            android:layout_marginBottom="40dp"
+            android:hint="Trip Name" />
+
+        <EditText
+            android:id="@+id/Budget"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appbar"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Budget"
+            android:textSize="20sp" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</RelativeLayout>
