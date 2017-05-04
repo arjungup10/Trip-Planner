@@ -20,10 +20,15 @@ public class CreateTripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createevent);
+
+        // Set up toolbar
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
         TextView tripNameField = (TextView)findViewById(R.id.Title);
         TextView tripBudgetField = (TextView)findViewById(R.id.Budget);
 
@@ -37,9 +42,9 @@ public class CreateTripActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.) {
-//            return true;
-//        }
+        if (id == R.id.save) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -68,9 +68,9 @@ public class TripActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.) {
-//            return true;
-//        }
+        if (id == R.id.settings) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
