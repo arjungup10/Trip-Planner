@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trips_menu">
+
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/settings"
+        android:title="Settings"/>
+
+</menu>
