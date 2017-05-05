@@ -36,10 +36,7 @@ public class TripActivity extends AppCompatActivity {
         myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         setTitle("Trips");
-        Log.d(TAG, "onCreate: ");
         if (getIntent().hasExtra("TripNameField") && getIntent().hasExtra("TripBudgetField")) {
-            Log.v("EditText", getIntent().getStringExtra("TripNameField"));
-            Log.v("EditText", getIntent().getStringExtra("TripBudgetField"));
             addTrip(new Trip(getIntent().getStringExtra("TripNameField"), Double.parseDouble((getIntent().getStringExtra("TripBudgetField")))));
         }
 
@@ -88,15 +85,4 @@ public class TripActivity extends AppCompatActivity {
         inflater.inflate(R.menu.trips_menu, menu);
         return true;
     }
-
-    public List<Trip> getTrips() {
-        return trips;
-    }
-
-    public void setTrips(List<Trip> trips) {
-        this.trips = trips;
-    }
-
-
-
 }

@@ -64,8 +64,6 @@ public class CreateTripActivity extends AppCompatActivity {
         intent.putExtra("TripNameField", tripNameField.getText().toString());
         intent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
         startActivity(intent);
-        Log.v("EditText", tripNameField.getText().toString());
-        Log.v("EditText", tripBudgetField.getText().toString());
         return true;
     }
 }
