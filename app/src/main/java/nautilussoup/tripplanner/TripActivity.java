@@ -1,13 +1,11 @@
 package nautilussoup.tripplanner;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,12 +17,13 @@ import java.util.List;
 public class TripActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private Toolbar myToolbar;
     private List<Trip> trips;
-    Toolbar myToolbar;
-    private final String TAG = "TripActivity";
+    private static final String newTripNameId = "TripNameField", newTripBudgetId = "TripBudgetField";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        trips = new ArrayList<Trip>();
+        trips = new ArrayList<>();
         trips.add(new Trip("Yosemite", 200.0));
         trips.add(new Trip("Tahoe", 100));
         trips.add(new Trip("Rafting", 100));
@@ -36,8 +35,8 @@ public class TripActivity extends AppCompatActivity {
         myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         setTitle("Trips");
-        if (getIntent().hasExtra("TripNameField") && getIntent().hasExtra("TripBudgetField")) {
-            addTrip(new Trip(getIntent().getStringExtra("TripNameField"), Double.parseDouble((getIntent().getStringExtra("TripBudgetField")))));
+        if (getIntent().hasExtra(newTripNameId) && getIntent().hasExtra(newTripBudgetId)) {
+            addTrip(new Trip(getIntent().getStringExtra(newTripNameId), Double.parseDouble((getIntent().getStringExtra(newTripBudgetId)))));
         }
 
 
