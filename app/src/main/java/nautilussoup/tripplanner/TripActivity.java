@@ -1,11 +1,13 @@
 package nautilussoup.tripplanner;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,10 +19,9 @@ import java.util.List;
 public class TripActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private List<Trip> trips;
     Toolbar myToolbar;
-
+    private final String TAG = "TripActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         trips = new ArrayList<Trip>();
@@ -35,13 +36,19 @@ public class TripActivity extends AppCompatActivity {
         myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         setTitle("Trips");
+        Log.d(TAG, "onCreate: ");
+        if (getIntent().hasExtra("TripNameField") && getIntent().hasExtra("TripBudgetField")) {
+            Log.v("EditText", getIntent().getStringExtra("TripNameField"));
+            Log.v("EditText", getIntent().getStringExtra("TripBudgetField"));
+            addTrip(new Trip(getIntent().getStringExtra("TripNameField"), Double.parseDouble((getIntent().getStringExtra("TripBudgetField")))));
+        }
 
 
         //create the recyclerview
         mRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
         // use a linear layout manager
         LinearLayoutManager llm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(llm);
@@ -81,5 +88,15 @@ public class TripActivity extends AppCompatActivity {
         inflater.inflate(R.menu.trips_menu, menu);
         return true;
     }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+
 
 }

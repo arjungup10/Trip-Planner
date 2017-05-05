@@ -1,8 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/create_trips_menu">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/create_trip_menu">
 
     <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/save"
-        android:title="Save">
+    <item
+        android:id="@+id/save"
+        android:title="Save"
+        android:onClick="createTrip"
+        app:showAsAction="always">
     </item>
 </menu>

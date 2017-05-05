@@ -1,10 +1,14 @@
 package nautilussoup.tripplanner;
 
-import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
@@ -15,11 +19,12 @@ import android.support.v7.widget.Toolbar;
 public class CreateTripActivity extends AppCompatActivity {
     TextView tripNameField, tripBudgetField;
     Toolbar myToolbar;
+    int appbarID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_createevent);
+        setContentView(R.layout.activity_create_trip);
 
         // Set up toolbar
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -28,10 +33,8 @@ public class CreateTripActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-        TextView tripNameField = (TextView)findViewById(R.id.Title);
-        TextView tripBudgetField = (TextView)findViewById(R.id.Budget);
-
+        tripNameField = (TextView)findViewById(R.id.Title);
+        tripBudgetField = (TextView)findViewById(R.id.Budget);
     }
 
     @Override
@@ -47,5 +50,22 @@ public class CreateTripActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.create_trip_menu, menu);
+        return true;
+    }
+
+    public boolean createTrip(MenuItem menu) {
+        Intent intent = new Intent(getBaseContext(), TripActivity.class);
+        intent.putExtra("TripNameField", tripNameField.getText().toString());
+        intent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
+        startActivity(intent);
+        Log.v("EditText", tripNameField.getText().toString());
+        Log.v("EditText", tripBudgetField.getText().toString());
+        return true;
     }
 }
