@@ -9,8 +9,8 @@
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardElevation="5dp"
-        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="2dp"
+        card_view:cardCornerRadius="2dp"
         card_view:cardUseCompatPadding="true"
         >
 
