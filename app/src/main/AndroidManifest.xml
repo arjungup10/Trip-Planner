@@ -18,11 +18,15 @@
         <activity
             android:name=".CreateTripActivity"
             android:label="@string/app_name"
-            android:parentActivityName="nautilussoup.tripplanner.TripActivity" >>
+            android:parentActivityName=".TripActivity">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TripDetails"
+            android:label="@string/title_activity_trip_details"></activity>
     </application>
 
 </manifest>
