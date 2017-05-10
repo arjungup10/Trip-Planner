@@ -9,12 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Arjun Gupta on 4/28/2017.
- */
-
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
-    //private String[] mDataset;
     private List<Trip> trips;
 
     public static class TripViewHolder extends RecyclerView.ViewHolder {
@@ -24,9 +19,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
         TripViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            tripName = (TextView)itemView.findViewById(R.id.trip_name);
-            tripBudget = (TextView)itemView.findViewById(R.id.trip_budget);
+            cv = (CardView) itemView.findViewById(R.id.cv);
+            tripName = (TextView) itemView.findViewById(R.id.trip_name);
+            tripBudget = (TextView) itemView.findViewById(R.id.trip_budget);
         }
     }
 
@@ -37,16 +32,20 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     // Create new views (invoked by the layout manager)
     @Override
     public TripViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_trip, viewGroup, false);
-        TripViewHolder pvh = new TripViewHolder(v);
-        return pvh;
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.content_trip, viewGroup, false);
+        //TripViewHolder pvh = new TripViewHolder(v);
+        //return pvh;
+        return new TripViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(TripViewHolder tripViewHolder, int i) {
+        String budgetToSet = "Budget: " + Double.toString(
+                trips.get(i).getTripBudget().getMaxBudget());
         tripViewHolder.tripName.setText(trips.get(i).getTripName());
-        tripViewHolder.tripBudget.setText("Budget: " + Double.toString(trips.get(i).getTripBudget().getMaxBudget()));
+        tripViewHolder.tripBudget.setText(budgetToSet);
     }
 
     @Override
