@@ -15,43 +15,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TripActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private Toolbar myToolbar;
     private List<Trip> trips;
-    private static final String newTripNameId = "TripNameField", newTripBudgetId = "TripBudgetField";
+    private static final String newTripNameId = "TripNameField";
+    private static final String newTripBudgetId = "TripBudgetField";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         trips = new ArrayList<>();
         trips.add(new Trip("Yosemite", 200.0));
-        trips.add(new Trip("Tahoe", 100));
+        trips.add(
+                new Trip("Tahoe", 100));
         trips.add(new Trip("Rafting", 100));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
         // create relevant toolbar
+        Toolbar myToolbar;
         myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         setTitle("Trips");
         if (getIntent().hasExtra(newTripNameId) && getIntent().hasExtra(newTripBudgetId)) {
-            addTrip(new Trip(getIntent().getStringExtra(newTripNameId), Double.parseDouble((getIntent().getStringExtra(newTripBudgetId)))));
+            addTrip(new Trip(getIntent().getStringExtra(newTripNameId),
+                    Double.parseDouble((getIntent().getStringExtra(newTripBudgetId)))));
         }
 
-
         //create the recyclerview
-        mRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
+        RecyclerView tripRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(false);
+        tripRecyclerView.setHasFixedSize(false);
         // use a linear layout manager
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(llm);
+        tripRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        mAdapter = new TripAdapter(trips);
-        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.Adapter tripAdapter = new TripAdapter(trips);
+        tripRecyclerView.setAdapter(tripAdapter);
     }
 
     public void createEvent(View view) {
