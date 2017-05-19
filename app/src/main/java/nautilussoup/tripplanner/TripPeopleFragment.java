@@ -57,6 +57,8 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
         if (getArguments() != null) {
             tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
         }
+
+        tripToDetail.addMember("Kevin Chiu");
         
         //create the recyclerview
         peopleRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);
@@ -102,6 +104,12 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     public void recyclerViewListClicked(View v, int position) {
         adapterPosition = position;
     }
+
+    public void addPersonToTrip() {
+        tripToDetail.addMember("Kevin Chiu");
+        peopleAdapter.notifyDataSetChanged();
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

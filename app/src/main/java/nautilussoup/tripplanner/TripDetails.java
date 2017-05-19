@@ -90,6 +90,8 @@ public class TripDetails extends AppCompatActivity implements
         }
         else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
             Toast.makeText(this, "Create new person", Toast.LENGTH_SHORT).show();
+            TripPeopleFragment exampleFragment = (TripPeopleFragment) selectedFragment;
+            exampleFragment.addPersonToTrip();
         }
         else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
             Toast.makeText(this, "Create new payment", Toast.LENGTH_SHORT).show();
