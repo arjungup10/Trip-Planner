@@ -1,4 +1,4 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Models;
 
 /**
  * Created by Arjun Gupta on 4/21/2017.

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nautilussoup.tripplanner.Models.Trip;
+
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
     private List<Trip> trips;
 

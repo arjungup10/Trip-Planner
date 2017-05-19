@@ -1,11 +1,8 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Arjun Gupta on 4/21/2017.
- */
 public class Budget {
     private double maxBudget;
     private double amountSpent;

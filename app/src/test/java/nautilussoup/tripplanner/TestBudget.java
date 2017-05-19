@@ -2,6 +2,8 @@ package nautilussoup.tripplanner;
 
 import org.junit.Test;
 
+import nautilussoup.tripplanner.Models.Budget;
+
 import static org.junit.Assert.*;
 
 /**

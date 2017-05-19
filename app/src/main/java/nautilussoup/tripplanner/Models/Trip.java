@@ -1,9 +1,13 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Models;
 
 import android.location.Location;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nautilussoup.tripplanner.Models.Budget;
+import nautilussoup.tripplanner.Models.Event;
+import nautilussoup.tripplanner.Models.Person;
 
 /**
  * Created by Arjun Gupta on 4/21/2017.

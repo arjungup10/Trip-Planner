@@ -14,6 +14,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import nautilussoup.tripplanner.Models.Trip;
+
 public class TripActivity extends AppCompatActivity {
     private List<Trip> trips;
     private static final String newTripNameId = "TripNameField";
