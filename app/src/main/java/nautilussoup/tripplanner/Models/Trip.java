@@ -2,6 +2,7 @@ package nautilussoup.tripplanner.Models;
 
 import android.location.Location;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import nautilussoup.tripplanner.Models.Person;
 /**
  * Created by Arjun Gupta on 4/21/2017.
  */
-public class Trip {
+public class Trip implements Serializable {
     private String tripName;
     private Budget tripBudget;
     private Location tripLocation;

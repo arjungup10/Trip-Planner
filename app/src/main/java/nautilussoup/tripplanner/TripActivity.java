@@ -23,6 +23,8 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     private static final String newTripNameId = "TripNameField";
     private static final String newTripBudgetId = "TripBudgetField";
     public static final int CREATE_TRIP_REQUEST = 1;
+    public static final int TRIP_DETAILS_REQUEST = 1;
+    public  final static String SER_KEY = "nautilussoup.tripplanner.TripActivity.ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +95,12 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     public boolean openTrip(View view) {
-        Intent intent = new Intent(getBaseContext(), TripDetails.class);
-        startActivity(intent);
+        //Set up return intents
+        Intent tripDetailsIntent = new Intent(this, TripDetails.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable(SER_KEY, trips.get(0));
+        tripDetailsIntent.putExtras(mBundle);
+        startActivityForResult(tripDetailsIntent, TRIP_DETAILS_REQUEST);
         return true;
     }
 

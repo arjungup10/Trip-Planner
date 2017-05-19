@@ -9,6 +9,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import nautilussoup.tripplanner.Models.Trip;
 
 public class TripDetails extends AppCompatActivity implements
         TripEventsFragment.OnFragmentInteractionListener,
@@ -16,6 +19,7 @@ public class TripDetails extends AppCompatActivity implements
         TripPaymentsFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,6 +54,9 @@ public class TripDetails extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
 
+        Trip tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
+        Toast.makeText(this, tripToDetail.getTripName(), Toast.LENGTH_SHORT).show();
+
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -60,7 +67,5 @@ public class TripDetails extends AppCompatActivity implements
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-        
-    }
+    public void onFragmentInteraction(Uri uri) {}
 }

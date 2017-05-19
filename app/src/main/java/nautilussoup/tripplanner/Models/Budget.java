@@ -1,9 +1,10 @@
 package nautilussoup.tripplanner.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Budget {
+public class Budget implements Serializable {
     private double maxBudget;
     private double amountSpent;
     private List payments;

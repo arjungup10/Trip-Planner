@@ -2,10 +2,12 @@ package nautilussoup.tripplanner.Models;
 
 import android.location.Location;
 
+import java.io.Serializable;
+
 /**
  * Created by Arjun Gupta on 4/21/2017.
  */
-public class Event {
+public class Event implements Serializable {
     private String eventName;
     private String earliestStartTime;
     private String latestEndTime;
