@@ -26,7 +26,9 @@
         </activity>
         <activity
             android:name=".TripDetails"
-            android:label="@string/title_activity_trip_details"></activity>
+            android:label="@string/title_activity_trip_details"
+            android:parentActivityName=".TripActivity">
+        </activity>
     </application>
 
 </manifest>
