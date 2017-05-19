@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 /**
  * Created by arjun on 5/3/2017.
@@ -24,7 +23,7 @@ public class CreateTripActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_trip);
 
         // Set up toolbar
-        myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        myToolbar = (Toolbar) findViewById(R.id.createTripToolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

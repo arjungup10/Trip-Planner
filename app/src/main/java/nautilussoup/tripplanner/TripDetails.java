@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ public class TripDetails extends AppCompatActivity implements
         TripPaymentsFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
+    private Trip tripToDetail;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -54,8 +56,15 @@ public class TripDetails extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
 
-        Trip tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
+        tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
         Toast.makeText(this, tripToDetail.getTripName(), Toast.LENGTH_SHORT).show();
+
+        // Set up toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tripDetailsToolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setTitle(tripToDetail.getTripName());
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

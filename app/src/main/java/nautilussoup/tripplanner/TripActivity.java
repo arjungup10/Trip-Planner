@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     public static final int CREATE_TRIP_REQUEST = 1;
     public static final int TRIP_DETAILS_REQUEST = 1;
     public  final static String SER_KEY = "nautilussoup.tripplanner.TripActivity.ser";
+    public RecyclerView tripRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,10 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
 
         // create relevant toolbar
         Toolbar myToolbar;
-        myToolbar = (Toolbar)findViewById(R.id.toolbar);
+        myToolbar = (Toolbar)findViewById(R.id.tripActivityToolbar);
         setSupportActionBar(myToolbar);
+
+
         setTitle("Trips");
         if (getIntent().hasExtra(newTripNameId) && getIntent().hasExtra(newTripBudgetId)) {
             addTrip(new Trip(getIntent().getStringExtra(newTripNameId),
@@ -48,7 +49,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         }
 
         //create the recyclerview
-        RecyclerView tripRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
+        tripRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         tripRecyclerView.setHasFixedSize(false);
