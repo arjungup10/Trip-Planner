@@ -17,7 +17,8 @@ import nautilussoup.tripplanner.Models.Trip;
 public class TripDetails extends AppCompatActivity implements
         TripEventsFragment.OnFragmentInteractionListener,
         TripItineraryFragment.OnFragmentInteractionListener,
-        TripPaymentsFragment.OnFragmentInteractionListener {
+        TripPaymentsFragment.OnFragmentInteractionListener,
+        TripPeopleFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     private Trip tripToDetail;
@@ -32,13 +33,16 @@ public class TripDetails extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.navigation_events:
                     selectedFragment = TripEventsFragment.newInstance();
-                    return true;
+                    break;
                 case R.id.navigation_itinerary:
                     selectedFragment = TripItineraryFragment.newInstance();
-                    return true;
+                    break;
                 case R.id.navigation_payments:
                     selectedFragment = TripPaymentsFragment.newInstance();
-                    return true;
+                    break;
+                case R.id.navigation_people:
+                    selectedFragment = TripPeopleFragment.newInstance();
+                    break;
             }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.tripDetails, selectedFragment);
@@ -63,7 +67,6 @@ public class TripDetails extends AppCompatActivity implements
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle(tripToDetail.getTripName());
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 

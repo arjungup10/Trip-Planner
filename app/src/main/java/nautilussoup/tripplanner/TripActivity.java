@@ -45,7 +45,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
         trips = new ArrayList<>();
-        registerForContextMenu(findViewById(R.id.rvEvents));
+        registerForContextMenu(findViewById(R.id.rvTrips));
 
         try {
             File file = new File(this.getFilesDir(), fileName);
@@ -89,7 +89,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         }
 
         //create the recyclerview
-        tripRecyclerView = (RecyclerView) findViewById(R.id.rvEvents);
+        tripRecyclerView = (RecyclerView) findViewById(R.id.rvTrips);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         tripRecyclerView.setHasFixedSize(false);

@@ -12,8 +12,14 @@
         android:title="Itinerary" />
 
     <item
+        android:id="@+id/navigation_people"
+        android:icon="@drawable/ic_face_black_24dp"
+        android:title="People" />
+
+    <item
         android:id="@+id/navigation_payments"
         android:icon="@drawable/ic_attach_money_black_24dp"
         android:title="Payments" />
+
 
 </menu>

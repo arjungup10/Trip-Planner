@@ -26,7 +26,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvEvents"
+        android:id="@+id/rvTrips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="0dp"

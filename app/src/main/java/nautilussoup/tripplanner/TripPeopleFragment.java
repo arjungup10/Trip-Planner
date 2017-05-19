@@ -7,14 +7,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-public class TripPaymentsFragment extends Fragment {
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link TripPeopleFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link TripPeopleFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class TripPeopleFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
-    public TripPaymentsFragment() {}
 
-    public static TripPaymentsFragment newInstance() {
-        TripPaymentsFragment fragment = new TripPaymentsFragment();
+    public TripPeopleFragment() {}
+
+    public static TripPeopleFragment newInstance() {
+        TripPeopleFragment fragment = new TripPeopleFragment();
         return fragment;
     }
 
@@ -27,7 +37,7 @@ public class TripPaymentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trip_payments, container, false);
+        return inflater.inflate(R.layout.fragment_trip_people, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

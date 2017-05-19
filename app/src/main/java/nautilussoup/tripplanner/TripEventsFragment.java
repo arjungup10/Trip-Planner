@@ -29,17 +29,8 @@ public class TripEventsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public TripEventsFragment() {
-        // Required empty public constructor
-    }
+    public TripEventsFragment() {}
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment TripEventsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TripEventsFragment newInstance() {
         TripEventsFragment fragment = new TripEventsFragment();
         Bundle args = new Bundle();
@@ -50,10 +41,6 @@ public class TripEventsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
