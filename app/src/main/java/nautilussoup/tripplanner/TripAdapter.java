@@ -1,8 +1,11 @@
 package nautilussoup.tripplanner;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +18,12 @@ import java.util.List;
 import nautilussoup.tripplanner.Models.Trip;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
+    private static final String TAG = "";
     private List<Trip> trips;
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
-    public static class TripViewHolder extends RecyclerView.ViewHolder {
+    public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cv;
         TextView tripName;
         TextView tripBudget;
@@ -29,16 +33,15 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             cv = (CardView) itemView.findViewById(R.id.cv);
             tripName = (TextView) itemView.findViewById(R.id.trip_name);
             tripBudget = (TextView) itemView.findViewById(R.id.trip_budget);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "inside viewholder position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            itemView.setOnClickListener(this);
         }
 
         public void onClick(View v) {
-            itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
+            Intent tripDetailsIntent = new Intent(context, TripDetails.class);
+            Bundle mBundle = new Bundle();
+            mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
+            tripDetailsIntent.putExtras(mBundle);
+            context.startActivity(tripDetailsIntent);
         }
     }
 
