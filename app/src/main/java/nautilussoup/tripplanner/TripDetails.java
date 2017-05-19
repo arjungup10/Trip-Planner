@@ -53,8 +53,8 @@ public class TripDetails extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
 
+        //Deserialize the trip object
         tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
-        Toast.makeText(this, tripToDetail.getTripName(), Toast.LENGTH_SHORT).show();
 
         // Set up toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tripDetailsToolbar);

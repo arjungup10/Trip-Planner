@@ -47,6 +47,6 @@
         android:layout_marginEnd="26dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="createEvent"/>
+        android:onClick="createTrip"/>
 
 </RelativeLayout>

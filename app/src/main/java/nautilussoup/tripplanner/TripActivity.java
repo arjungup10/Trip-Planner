@@ -1,16 +1,28 @@
 package nautilussoup.tripplanner;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,17 +36,45 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     public static final int TRIP_DETAILS_REQUEST = 1;
     public  final static String SER_KEY = "nautilussoup.tripplanner.TripActivity.ser";
     public RecyclerView tripRecyclerView;
+    private RecyclerView.Adapter tripAdapter;
+    public String fileName = "trips";
+    public int adapterPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        trips = new ArrayList<>();
-        trips.add(new Trip("Yosemite", 200.0));
-        trips.add(
-                new Trip("Tahoe", 100));
-        trips.add(new Trip("Rafting", 100));
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
+        trips = new ArrayList<>();
+        registerForContextMenu(findViewById(R.id.rvEvents));
+
+        try {
+            File file = new File(this.getFilesDir(), fileName);
+            if(file == null || !file.exists()) {
+                FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+
+                Trip Yosemite = new Trip("Yosemite", 200.0);
+                Trip Tahoe = new Trip("Tahoe", 100);
+                Trip Rafting = new Trip("Rafting", 100);
+                trips.add(Yosemite);
+                trips.add(Tahoe);
+                trips.add(Rafting);
+
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(trips);
+
+                fos.close();
+                oos.close();
+            }
+            else {
+                FileInputStream fis = openFileInput(fileName);
+                ObjectInputStream is = new ObjectInputStream(fis);
+                trips = (List<Trip>) is.readObject();
+            }
+        }
+        catch(Exception e) {
+            Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();
+            Log.e("", "exception", e);
+        }
 
         // create relevant toolbar
         Toolbar myToolbar;
@@ -58,11 +98,11 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         tripRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        RecyclerView.Adapter tripAdapter = new TripAdapter(getBaseContext(), trips, this);
+        tripAdapter = new TripAdapter(getBaseContext(), trips, this);
         tripRecyclerView.setAdapter(tripAdapter);
     }
 
-    public void createEvent(View view) {
+    public void createTrip(View view) {
         //Set up return intents
         Intent createTripIntent = new Intent(this, CreateTripActivity.class);
         startActivityForResult(createTripIntent, CREATE_TRIP_REQUEST);
@@ -95,18 +135,28 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         return true;
     }
 
-    public boolean openTrip(View view) {
-        //Set up return intents
-        Intent tripDetailsIntent = new Intent(this, TripDetails.class);
-        Bundle mBundle = new Bundle();
-        mBundle.putSerializable(SER_KEY, trips.get(0));
-        tripDetailsIntent.putExtras(mBundle);
-        startActivityForResult(tripDetailsIntent, TRIP_DETAILS_REQUEST);
-        return true;
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.trip_action_menu, menu);
     }
 
     @Override
-    public void recyclerViewListClicked(View v, int position) {}
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_delete) {
+            trips.remove(adapterPosition);
+            updateTrips();
+            tripAdapter.notifyDataSetChanged();
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+        adapterPosition = position;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -115,7 +165,24 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
             if (data.hasExtra(newTripNameId) && data.hasExtra(newTripBudgetId)) {
                 addTrip(new Trip(data.getStringExtra(newTripNameId),
                         Double.parseDouble((data.getStringExtra(newTripBudgetId)))));
+                updateTrips();
+
             }
+        }
+    }
+
+    public void updateTrips() {
+        try{
+            FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(trips);
+
+            fos.close();
+            oos.close();
+        }
+        catch(Exception e) {
+            Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();
+            Log.e("", "exception", e);
         }
     }
 }

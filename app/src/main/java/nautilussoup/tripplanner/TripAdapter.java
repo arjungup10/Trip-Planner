@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -23,7 +25,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
-    public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cv;
         TextView tripName;
         TextView tripBudget;
@@ -34,14 +36,23 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             tripName = (TextView) itemView.findViewById(R.id.trip_name);
             tripBudget = (TextView) itemView.findViewById(R.id.trip_budget);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         public void onClick(View v) {
+            itemListener.recyclerViewListClicked(v, this.getAdapterPosition());
             Intent tripDetailsIntent = new Intent(context, TripDetails.class);
             Bundle mBundle = new Bundle();
             mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
             tripDetailsIntent.putExtras(mBundle);
             context.startActivity(tripDetailsIntent);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            itemListener.recyclerViewListClicked(v, this.getAdapterPosition());
+            itemView.showContextMenu();
+            return true;
         }
     }
 
