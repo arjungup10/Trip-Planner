@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 /**
  * Created by arjun on 5/3/2017.
@@ -56,6 +57,14 @@ public class CreateTripActivity extends AppCompatActivity {
     }
 
     public boolean createTrip(MenuItem menu) {
+        if (tripNameField.getText().toString().matches("")) {
+            Toast.makeText(this, "Please Enter a Valid Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (tripBudgetField.getText().toString().matches("")) {
+            Toast.makeText(this, "Please Enter a Valid Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         finish();
         return true;
     }
