@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,17 +21,16 @@ public class TripDetails extends AppCompatActivity implements
         TripPaymentsFragment.OnFragmentInteractionListener,
         TripPeopleFragment.OnFragmentInteractionListener {
 
+    public  final static String SER_KEY = "nautilussoup.tripplanner.TripDetails.ser";
     private TextView mTextMessage;
     private Trip tripToDetail;
-    public  final static String SER_KEY = "nautilussoup.tripplanner.TripDetails.ser";
-
+    private Fragment selectedFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_events:
                     selectedFragment = TripEventsFragment.newInstance(tripToDetail);
@@ -72,11 +72,27 @@ public class TripDetails extends AppCompatActivity implements
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        selectedFragment = TripEventsFragment.newInstance(tripToDetail);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.tripDetails, TripEventsFragment.newInstance(tripToDetail));
+        transaction.replace(R.id.tripDetails, selectedFragment);
         transaction.commit();
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {}
+
+    public void createTripDetails(View v) {
+        if (selectedFragment.getClass().equals(TripEventsFragment.class)) {
+            Toast.makeText(this, "Create new event", Toast.LENGTH_SHORT).show();
+        }
+        else if (selectedFragment.getClass().equals(TripItineraryFragment.class)) {
+            Toast.makeText(this, "Refresh Itinerary", Toast.LENGTH_SHORT).show();
+        }
+        else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
+            Toast.makeText(this, "Create new person", Toast.LENGTH_SHORT).show();
+        }
+        else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
+            Toast.makeText(this, "Create new payment", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

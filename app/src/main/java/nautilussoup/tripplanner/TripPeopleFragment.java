@@ -57,9 +57,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
         if (getArguments() != null) {
             tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
         }
-
-        Toast.makeText(rootView.getContext(), tripToDetail.getTripName(), Toast.LENGTH_SHORT).show();
-
+        
         //create the recyclerview
         peopleRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);
         // use this setting to improve performance if you know that changes
