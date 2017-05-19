@@ -22,6 +22,7 @@ public class TripDetails extends AppCompatActivity implements
 
     private TextView mTextMessage;
     private Trip tripToDetail;
+    public  final static String SER_KEY = "nautilussoup.tripplanner.TripDetails.ser";
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -32,18 +33,19 @@ public class TripDetails extends AppCompatActivity implements
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_events:
-                    selectedFragment = TripEventsFragment.newInstance();
+                    selectedFragment = TripEventsFragment.newInstance(tripToDetail);
                     break;
                 case R.id.navigation_itinerary:
-                    selectedFragment = TripItineraryFragment.newInstance();
+                    selectedFragment = TripItineraryFragment.newInstance(tripToDetail);
                     break;
                 case R.id.navigation_payments:
-                    selectedFragment = TripPaymentsFragment.newInstance();
+                    selectedFragment = TripPaymentsFragment.newInstance(tripToDetail);
                     break;
                 case R.id.navigation_people:
-                    selectedFragment = TripPeopleFragment.newInstance();
+                    selectedFragment = TripPeopleFragment.newInstance(tripToDetail);
                     break;
             }
+
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.tripDetails, selectedFragment);
             transaction.commit();
@@ -71,7 +73,7 @@ public class TripDetails extends AppCompatActivity implements
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.tripDetails, TripItineraryFragment.newInstance());
+        transaction.replace(R.id.tripDetails, TripEventsFragment.newInstance(tripToDetail));
         transaction.commit();
     }
 

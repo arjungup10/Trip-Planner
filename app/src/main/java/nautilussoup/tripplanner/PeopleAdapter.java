@@ -11,35 +11,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 
+import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Trip;
 
-public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
+public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {
     private static final String TAG = "";
-    private List<Trip> trips;
+    private final Trip tripToDetail;
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
-    public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        CardView cv;
-        TextView tripName;
-        TextView tripBudget;
+    public class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+        CardView cvPeople;
+        TextView personName;
 
-        TripViewHolder(View itemView) {
+        PeopleViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
-            tripName = (TextView) itemView.findViewById(R.id.trip_name);
-            tripBudget = (TextView) itemView.findViewById(R.id.trip_budget);
+            cvPeople = (CardView) itemView.findViewById(R.id.cvPeople);
+            personName = (TextView) itemView.findViewById(R.id.person_Name);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
 
         public void onClick(View v) {
             itemListener.recyclerViewListClicked(v, this.getAdapterPosition());
-            Intent tripDetailsIntent = new Intent(context, TripDetails.class);
-            Bundle mBundle = new Bundle();
-            mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
-            tripDetailsIntent.putExtras(mBundle);
-            context.startActivity(tripDetailsIntent);
+            //Intent tripDetailsIntent = new Intent(context, TripDetails.class);
+            //Bundle mBundle = new Bundle();
+            //mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
+            //tripDetailsIntent.putExtras(mBundle);
+            //context.startActivity(tripDetailsIntent);
         }
 
         @Override
@@ -50,27 +49,25 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         }
     }
 
-    public TripAdapter(Context context, List<Trip> trips, RecyclerViewClickListener itemListener) {
+    public PeopleAdapter(Context context, Trip trip, RecyclerViewClickListener itemListener) {
         this.context = context;
         this.itemListener = itemListener;
-        this.trips = trips;
+        tripToDetail = trip;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public TripViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public PeopleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.content_trip, viewGroup, false);
-        return new TripViewHolder(v);
+                R.layout.content_people, viewGroup, false);
+        return new PeopleViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(TripViewHolder tripViewHolder, int i) {
-        String budgetToSet = "Budget: " + Double.toString(
-                trips.get(i).getTripBudget().getMaxBudget());
-        tripViewHolder.tripName.setText(trips.get(i).getTripName());
-        tripViewHolder.tripBudget.setText(budgetToSet);
+    public void onBindViewHolder(PeopleViewHolder peopleViewHolder, int i) {
+        Person p = (Person) tripToDetail.getTripMembers().get(i);
+        peopleViewHolder.personName.setText(p.getName());
     }
 
     @Override
@@ -81,6 +78,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return trips.size();
+        return tripToDetail.getTripMembers().size();
     }
 }

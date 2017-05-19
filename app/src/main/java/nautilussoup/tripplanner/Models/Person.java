@@ -9,8 +9,8 @@ import java.io.Serializable;
  */
 public class Person implements Serializable {
     private String name;
-    private Location home;
 
+    private Location home;
     public Person(String name) {
         this.name = name;
     }
@@ -18,5 +18,9 @@ public class Person implements Serializable {
     public Person(String name, Location home) {
         this.name = name;
         //TO-DO: set location
+    }
+
+    public String getName() {
+        return name;
     }
 }

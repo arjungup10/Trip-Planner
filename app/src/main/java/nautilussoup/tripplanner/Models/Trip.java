@@ -62,4 +62,9 @@ public class Trip implements Serializable {
     public void setTripBudget(Budget tripBudget) {
         this.tripBudget = tripBudget;
     }
+
+    public List getTripMembers() {
+        return tripMembers;
+    }
+
 }

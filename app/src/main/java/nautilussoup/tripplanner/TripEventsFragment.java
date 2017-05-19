@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import nautilussoup.tripplanner.Models.Trip;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,23 +20,18 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class TripEventsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private Trip tripToDetail;
+    private static final String TRIP_KEY = "trip_key";
 
     public TripEventsFragment() {}
 
-    public static TripEventsFragment newInstance() {
+    public static TripEventsFragment newInstance(Trip trip) {
         TripEventsFragment fragment = new TripEventsFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(TRIP_KEY, trip);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -47,7 +44,13 @@ public class TripEventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trip_events, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_trip_events, container, false);
+
+        if (getArguments() != null) {
+            tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
+        }
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
