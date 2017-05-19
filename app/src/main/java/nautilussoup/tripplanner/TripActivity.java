@@ -6,20 +6,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
 
-public class TripActivity extends AppCompatActivity {
+public class TripActivity extends AppCompatActivity implements RecyclerViewClickListener {
     private List<Trip> trips;
     private static final String newTripNameId = "TripNameField";
     private static final String newTripBudgetId = "TripBudgetField";
+    public static final int CREATE_TRIP_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +55,14 @@ public class TripActivity extends AppCompatActivity {
         tripRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        RecyclerView.Adapter tripAdapter = new TripAdapter(trips);
+        RecyclerView.Adapter tripAdapter = new TripAdapter(getBaseContext(), trips, this);
         tripRecyclerView.setAdapter(tripAdapter);
     }
 
     public void createEvent(View view) {
-        startActivity(new Intent(TripActivity.this, CreateTripActivity.class));
+        //Set up return intents
+        Intent createTripIntent = new Intent(this, CreateTripActivity.class);
+        startActivityForResult(createTripIntent, CREATE_TRIP_REQUEST);
     }
 
     public void addTrip(Trip tripToAdd) {
@@ -85,5 +90,25 @@ public class TripActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.trips_menu, menu);
         return true;
+    }
+
+    public boolean openTrip(View view) {
+        Intent intent = new Intent(getBaseContext(), TripDetails.class);
+        startActivity(intent);
+        return true;
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {}
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CREATE_TRIP_REQUEST && resultCode == RESULT_OK) {
+            if (data.hasExtra(newTripNameId) && data.hasExtra(newTripBudgetId)) {
+                addTrip(new Trip(data.getStringExtra(newTripNameId),
+                        Double.parseDouble((data.getStringExtra(newTripBudgetId)))));
+            }
+        }
     }
 }

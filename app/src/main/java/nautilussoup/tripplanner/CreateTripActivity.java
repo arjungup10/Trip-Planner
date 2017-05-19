@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 /**
  * Created by arjun on 5/3/2017.
@@ -56,10 +57,16 @@ public class CreateTripActivity extends AppCompatActivity {
     }
 
     public boolean createTrip(MenuItem menu) {
-        Intent intent = new Intent(getBaseContext(), TripActivity.class);
-        intent.putExtra("TripNameField", tripNameField.getText().toString());
-        intent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
-        startActivity(intent);
+        finish();
         return true;
+    }
+
+    @Override
+    public void finish() {
+        Intent returnIntent = new Intent(getBaseContext(), TripActivity.class);
+        returnIntent.putExtra("TripNameField", tripNameField.getText().toString());
+        returnIntent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
+        setResult(RESULT_OK, returnIntent);
+        super.finish();
     }
 }
