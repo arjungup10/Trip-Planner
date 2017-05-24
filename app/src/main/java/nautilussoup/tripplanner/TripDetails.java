@@ -1,5 +1,6 @@
 package nautilussoup.tripplanner;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,10 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
@@ -36,16 +41,16 @@ public class TripDetails extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_events:
-                    selectedFragment = TripEventsFragment.newInstance(tripToDetail);
+                    selectedFragment = TripEventsFragment.newInstance(tripPosition);
                     break;
                 case R.id.navigation_itinerary:
-                    selectedFragment = TripItineraryFragment.newInstance(tripToDetail);
+                    selectedFragment = TripItineraryFragment.newInstance(tripPosition);
                     break;
                 case R.id.navigation_payments:
-                    selectedFragment = TripPaymentsFragment.newInstance(tripToDetail);
+                    selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
                     break;
                 case R.id.navigation_people:
-                    selectedFragment = TripPeopleFragment.newInstance(tripToDetail);
+                    selectedFragment = TripPeopleFragment.newInstance(tripPosition);
                     break;
             }
 
@@ -66,8 +71,9 @@ public class TripDetails extends AppCompatActivity implements
         //tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
 
         //Get the clicked adapter position
+        trips = Trips.getInstance();
         int tripPosition = getIntent().getExtras().getInt("tripPosition");
-        tripToDetail = trips.getInstance().getTripList().get(tripPosition);
+        tripToDetail = trips.getTripList().get(tripPosition);
 
         // Set up toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tripDetailsToolbar);
@@ -79,7 +85,7 @@ public class TripDetails extends AppCompatActivity implements
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        selectedFragment = TripEventsFragment.newInstance(tripToDetail);
+        selectedFragment = TripEventsFragment.newInstance(tripPosition);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.tripDetails, selectedFragment);
         transaction.commit();
@@ -91,17 +97,30 @@ public class TripDetails extends AppCompatActivity implements
     public void createTripDetails(View v) {
         if (selectedFragment.getClass().equals(TripEventsFragment.class)) {
             Toast.makeText(this, "Create new event", Toast.LENGTH_SHORT).show();
-        }
-        else if (selectedFragment.getClass().equals(TripItineraryFragment.class)) {
+        } else if (selectedFragment.getClass().equals(TripItineraryFragment.class)) {
             Toast.makeText(this, "Refresh Itinerary", Toast.LENGTH_SHORT).show();
-        }
-        else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
+        } else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
             Toast.makeText(this, "Create new person", Toast.LENGTH_SHORT).show();
             TripPeopleFragment exampleFragment = (TripPeopleFragment) selectedFragment;
             exampleFragment.addPersonToTrip();
-        }
-        else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
+        } else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
             Toast.makeText(this, "Create new payment", Toast.LENGTH_SHORT).show();
+        }
+        trips.setTrip(tripToDetail, tripPosition);
+        updateTrips();
+    }
+
+    public void updateTrips() {
+        try {
+            FileOutputStream fos = openFileOutput("trips", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(trips.getTripList());
+
+            fos.close();
+            oos.close();
+        } catch (Exception e) {
+            Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();
+            Log.e("", "exception", e);
         }
     }
 }

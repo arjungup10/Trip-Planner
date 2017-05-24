@@ -9,19 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import nautilussoup.tripplanner.Models.Trip;
+import nautilussoup.tripplanner.Models.Trips;
 
 public class TripPaymentsFragment extends Fragment {
 
     private Trip tripToDetail;
-    private static final String TRIP_KEY = "trip_key";
+    private Trips trips;
+    private int tripPosition;
 
     private OnFragmentInteractionListener mListener;
     public TripPaymentsFragment() {}
 
-    public static TripPaymentsFragment newInstance(Trip trip) {
+    public static TripPaymentsFragment newInstance(int tripPosition) {
         TripPaymentsFragment fragment = new TripPaymentsFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(TRIP_KEY, trip);
+        bundle.putInt("tripPosition", tripPosition);
+        //bundle.putSerializable(TRIP_KEY, trip);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -37,8 +40,11 @@ public class TripPaymentsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_trip_payments, container, false);
 
+        trips = Trips.getInstance();
+
         if (getArguments() != null) {
-            tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
+            tripPosition = getArguments().getInt("tripPosition");
+            tripToDetail = trips.getTripList().get(tripPosition);
         }
 
         return rootView;

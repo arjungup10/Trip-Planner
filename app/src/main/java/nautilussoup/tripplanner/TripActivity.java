@@ -70,6 +70,8 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
                 FileInputStream fis = openFileInput(fileName);
                 ObjectInputStream is = new ObjectInputStream(fis);
                 tripList = (List<Trip>) is.readObject();
+                fis.close();
+                is.close();
             }
         } catch (Exception e) {
             Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();

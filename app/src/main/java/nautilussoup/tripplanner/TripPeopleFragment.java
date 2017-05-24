@@ -30,7 +30,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     private OnFragmentInteractionListener mListener;
     public RecyclerView peopleRecyclerView;
     private RecyclerView.Adapter peopleAdapter;
-    private int adapterPosition;
+    private int tripPosition;
     Trips trips;
     private Trip tripToDetail;
     private static final String TRIP_KEY = "trip_key";
@@ -38,10 +38,11 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
 
     public TripPeopleFragment() {}
 
-    public static TripPeopleFragment newInstance(Trip trip) {
+    public static TripPeopleFragment newInstance(int tripPosition) {
         TripPeopleFragment fragment = new TripPeopleFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(TRIP_KEY, trip);
+        bundle.putInt("tripPosition", tripPosition);
+        //bundle.putSerializable(TRIP_KEY, trip);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -56,15 +57,18 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_trip_people, container, false);
 
+        trips = Trips.getInstance();
+        Toast.makeText(getActivity(), trips.getTripList().get(0).getTripName(), Toast.LENGTH_SHORT).show();
+
         if (getArguments() != null) {
-            tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
+            //tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
+            tripPosition = getArguments().getInt("tripPosition");
+            tripToDetail = trips.getTripList().get(tripPosition);
         }
+
 
         tripToDetail.addMember("Kevin Chiu");
 
-        trips = Trips.getInstance();
-        Toast.makeText(getActivity(), trips.getTripList().get(0).getTripName(), Toast.LENGTH_SHORT).show();
-        
         //create the recyclerview
         peopleRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);
         // use this setting to improve performance if you know that changes
@@ -107,12 +111,13 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
-        adapterPosition = position;
+        tripPosition = position;
     }
 
     public void addPersonToTrip() {
         tripToDetail.addMember("Kevin Chiu");
         peopleAdapter.notifyDataSetChanged();
+        //trips.setTrip(tripToDetail, tripPosition);
     }
 
 
