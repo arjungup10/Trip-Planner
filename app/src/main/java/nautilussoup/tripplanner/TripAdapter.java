@@ -20,13 +20,13 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     private static RecyclerViewClickListener itemListener;
 
     public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        CardView cv;
+        CardView cvTrip;
         TextView tripName;
         TextView tripBudget;
 
         TripViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
+            cvTrip = (CardView) itemView.findViewById(R.id.cvTrip);
             tripName = (TextView) itemView.findViewById(R.id.trip_name);
             tripBudget = (TextView) itemView.findViewById(R.id.trip_budget);
             itemView.setOnClickListener(this);
