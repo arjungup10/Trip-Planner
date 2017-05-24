@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -31,9 +34,10 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     public RecyclerView peopleRecyclerView;
     private RecyclerView.Adapter peopleAdapter;
     private int tripPosition;
-    Trips trips;
+    private Trips trips;
     private Trip tripToDetail;
-    private static final String TRIP_KEY = "trip_key";
+    private View rootView;
+    private int adapterPosition;
 
 
     public TripPeopleFragment() {}
@@ -42,7 +46,6 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
         TripPeopleFragment fragment = new TripPeopleFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("tripPosition", tripPosition);
-        //bundle.putSerializable(TRIP_KEY, trip);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -55,19 +58,17 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_trip_people, container, false);
+        rootView = inflater.inflate(R.layout.fragment_trip_people, container, false);
+        registerForContextMenu(rootView.findViewById(R.id.rvPeople));
 
         trips = Trips.getInstance();
         Toast.makeText(getActivity(), trips.getTripList().get(0).getTripName(), Toast.LENGTH_SHORT).show();
 
         if (getArguments() != null) {
-            //tripToDetail = (Trip) getArguments().getSerializable(TRIP_KEY);
             tripPosition = getArguments().getInt("tripPosition");
             tripToDetail = trips.getTripList().get(tripPosition);
         }
 
-
-        tripToDetail.addMember("Kevin Chiu");
 
         //create the recyclerview
         peopleRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);
@@ -111,7 +112,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
-        tripPosition = position;
+        adapterPosition = position;
     }
 
     public void addPersonToTrip() {
@@ -134,5 +135,22 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.trip_action_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_delete) {
+            tripToDetail.getTripMembers().remove(adapterPosition);
+            peopleAdapter.notifyDataSetChanged();
+            ((TripDetails) getActivity()).updateTrips();
+            return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }
