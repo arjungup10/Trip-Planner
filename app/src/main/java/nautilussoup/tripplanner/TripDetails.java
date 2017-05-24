@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import nautilussoup.tripplanner.Models.Trip;
+import nautilussoup.tripplanner.Models.Trips;
 
 public class TripDetails extends AppCompatActivity implements
         TripEventsFragment.OnFragmentInteractionListener,
@@ -23,7 +24,9 @@ public class TripDetails extends AppCompatActivity implements
 
     public  final static String SER_KEY = "nautilussoup.tripplanner.TripDetails.ser";
     private TextView mTextMessage;
+    private Trips trips;
     private Trip tripToDetail;
+    private int tripPosition;
     private Fragment selectedFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -60,7 +63,11 @@ public class TripDetails extends AppCompatActivity implements
         setContentView(R.layout.activity_trip_details);
 
         //Deserialize the trip object
-        tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
+        //tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
+
+        //Get the clicked adapter position
+        int tripPosition = getIntent().getExtras().getInt("tripPosition");
+        tripToDetail = trips.getInstance().getTripList().get(tripPosition);
 
         // Set up toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tripDetailsToolbar);

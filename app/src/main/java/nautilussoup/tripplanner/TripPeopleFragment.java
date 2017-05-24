@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
+import nautilussoup.tripplanner.Models.Trips;
 
 
 /**
@@ -30,6 +31,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     public RecyclerView peopleRecyclerView;
     private RecyclerView.Adapter peopleAdapter;
     private int adapterPosition;
+    Trips trips;
     private Trip tripToDetail;
     private static final String TRIP_KEY = "trip_key";
 
@@ -59,6 +61,9 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
         }
 
         tripToDetail.addMember("Kevin Chiu");
+
+        trips = Trips.getInstance();
+        Toast.makeText(getActivity(), trips.getTripList().get(0).getTripName(), Toast.LENGTH_SHORT).show();
         
         //create the recyclerview
         peopleRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);

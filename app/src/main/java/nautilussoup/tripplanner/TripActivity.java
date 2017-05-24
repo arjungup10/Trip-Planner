@@ -27,9 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
+import nautilussoup.tripplanner.Models.Trips;
 
 public class TripActivity extends AppCompatActivity implements RecyclerViewClickListener {
-    private List<Trip> trips;
+    private List<Trip> tripList;
     private static final String newTripNameId = "TripNameField";
     private static final String newTripBudgetId = "TripBudgetField";
     public static final int CREATE_TRIP_REQUEST = 1;
@@ -39,42 +40,45 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     private RecyclerView.Adapter tripAdapter;
     public String fileName = "trips";
     public int adapterPosition;
+    private Trips trips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
-        trips = new ArrayList<>();
         registerForContextMenu(findViewById(R.id.rvTrips));
+        tripList = new ArrayList<>();
 
         try {
             File file = new File(this.getFilesDir(), fileName);
-            if(file == null || !file.exists()) {
+            if (file == null || !file.exists()) {
                 FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
 
-                Trip Yosemite = new Trip("Yosemite", 200.0);
-                Trip Tahoe = new Trip("Tahoe", 100);
-                Trip Rafting = new Trip("Rafting", 100);
-                trips.add(Yosemite);
-                trips.add(Tahoe);
-                trips.add(Rafting);
+                Trip yosemite = new Trip("Yosemite", 200.0);
+                Trip tahoe = new Trip("Tahoe", 100);
+                Trip rafting = new Trip("Rafting", 100);
+                tripList.add(yosemite);
+                tripList.add(tahoe);
+                tripList.add(rafting);
 
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(trips);
+                oos.writeObject(tripList);
 
                 fos.close();
                 oos.close();
-            }
-            else {
+            } else {
                 FileInputStream fis = openFileInput(fileName);
                 ObjectInputStream is = new ObjectInputStream(fis);
-                trips = (List<Trip>) is.readObject();
+                tripList = (List<Trip>) is.readObject();
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();
             Log.e("", "exception", e);
         }
+
+        //Set up singleton instance of trips
+        Trips trips = Trips.getInstance();
+        trips.setTripList(tripList);
 
         // create relevant toolbar
         Toolbar myToolbar;
@@ -98,7 +102,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         tripRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        tripAdapter = new TripAdapter(getBaseContext(), trips, this);
+        tripAdapter = new TripAdapter(getBaseContext(), tripList, this);
         tripRecyclerView.setAdapter(tripAdapter);
     }
 
@@ -109,7 +113,10 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     public void addTrip(Trip tripToAdd) {
-        trips.add(tripToAdd);
+        tripList.add(tripToAdd);
+        //trips.setTripList(tripList);
+        tripAdapter.notifyDataSetChanged();
+        updateTrips();
     }
 
 
@@ -145,7 +152,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_delete) {
-            trips.remove(adapterPosition);
+            tripList.remove(adapterPosition);
             updateTrips();
             tripAdapter.notifyDataSetChanged();
             return true;
@@ -160,12 +167,12 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //Trips trips = Trips.getInstance();
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CREATE_TRIP_REQUEST && resultCode == RESULT_OK) {
             if (data.hasExtra(newTripNameId) && data.hasExtra(newTripBudgetId)) {
                 addTrip(new Trip(data.getStringExtra(newTripNameId),
                         Double.parseDouble((data.getStringExtra(newTripBudgetId)))));
-                updateTrips();
 
             }
         }
@@ -175,7 +182,8 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         try{
             FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(trips);
+            oos.writeObject(tripList);
+            trips.getInstance().setTripList(tripList);
 
             fos.close();
             oos.close();

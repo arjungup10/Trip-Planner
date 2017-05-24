@@ -36,9 +36,10 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         public void onClick(View v) {
             itemListener.recyclerViewListClicked(v, this.getAdapterPosition());
             Intent tripDetailsIntent = new Intent(context, TripDetails.class);
-            Bundle mBundle = new Bundle();
-            mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
-            tripDetailsIntent.putExtras(mBundle);
+            tripDetailsIntent.putExtra("tripPosition", getAdapterPosition());
+            //Bundle mBundle = new Bundle();
+            //mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
+            //tripDetailsIntent.putExtras(mBundle);
             context.startActivity(tripDetailsIntent);
         }
 
