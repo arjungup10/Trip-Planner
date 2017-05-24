@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".TripActivity">
+        <activity android:name=".Views.TripActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,18 +16,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateTripActivity"
+            android:name=".Views.CreateTripActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".TripActivity">
+            android:parentActivityName=".Views.TripActivity">
             >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".TripDetails"
+            android:name=".Views.TripDetails"
             android:label="@string/title_activity_trip_details"
-            android:parentActivityName=".TripActivity">
+            android:parentActivityName=".Views.TripActivity">
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Views;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
+import nautilussoup.tripplanner.R;
 
 
 /**

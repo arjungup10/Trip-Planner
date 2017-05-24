@@ -1,8 +1,7 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Controllers;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +11,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
+import nautilussoup.tripplanner.R;
+import nautilussoup.tripplanner.RecyclerViewClickListener;
+import nautilussoup.tripplanner.Views.TripDetails;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
     private static final String TAG = "";

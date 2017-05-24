@@ -1,4 +1,4 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
+
+import nautilussoup.tripplanner.R;
 
 /**
  * Created by arjun on 5/3/2017.

@@ -1,4 +1,4 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Views;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,18 +10,29 @@ import android.view.ViewGroup;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
+import nautilussoup.tripplanner.R;
 
-public class TripPaymentsFragment extends Fragment {
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link TripEventsFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link TripEventsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class TripEventsFragment extends Fragment {
+
+    private OnFragmentInteractionListener mListener;
     private Trip tripToDetail;
+    private static final String TRIP_KEY = "trip_key";
     private Trips trips;
     private int tripPosition;
 
-    private OnFragmentInteractionListener mListener;
-    public TripPaymentsFragment() {}
+    public TripEventsFragment() {}
 
-    public static TripPaymentsFragment newInstance(int tripPosition) {
-        TripPaymentsFragment fragment = new TripPaymentsFragment();
+    public static TripEventsFragment newInstance(int tripPosition) {
+        TripEventsFragment fragment = new TripEventsFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("tripPosition", tripPosition);
         //bundle.putSerializable(TRIP_KEY, trip);
@@ -37,8 +48,8 @@ public class TripPaymentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_trip_payments, container, false);
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_trip_events, container, false);
 
         trips = Trips.getInstance();
 

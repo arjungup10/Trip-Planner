@@ -1,4 +1,4 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Views;
 
 import android.content.Context;
 import android.net.Uri;
@@ -20,6 +20,7 @@ import java.io.ObjectOutputStream;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
+import nautilussoup.tripplanner.R;
 
 public class TripDetails extends AppCompatActivity implements
         TripEventsFragment.OnFragmentInteractionListener,
@@ -27,7 +28,7 @@ public class TripDetails extends AppCompatActivity implements
         TripPaymentsFragment.OnFragmentInteractionListener,
         TripPeopleFragment.OnFragmentInteractionListener {
 
-    public  final static String SER_KEY = "nautilussoup.tripplanner.TripDetails.ser";
+    public  final static String SER_KEY = "nautilussoup.tripplanner.Views.TripDetails.ser";
     private TextView mTextMessage;
     private Trips trips;
     private Trip tripToDetail;

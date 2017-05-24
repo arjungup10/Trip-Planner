@@ -1,10 +1,8 @@
-package nautilussoup.tripplanner;
+package nautilussoup.tripplanner.Views;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -28,6 +25,9 @@ import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
+import nautilussoup.tripplanner.R;
+import nautilussoup.tripplanner.RecyclerViewClickListener;
+import nautilussoup.tripplanner.Controllers.TripAdapter;
 
 public class TripActivity extends AppCompatActivity implements RecyclerViewClickListener {
     private List<Trip> tripList;
@@ -35,7 +35,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     private static final String newTripBudgetId = "TripBudgetField";
     public static final int CREATE_TRIP_REQUEST = 1;
     public static final int TRIP_DETAILS_REQUEST = 1;
-    public  final static String SER_KEY = "nautilussoup.tripplanner.TripActivity.ser";
+    public  final static String SER_KEY = "nautilussoup.tripplanner.Views.TripActivity.ser";
     public RecyclerView tripRecyclerView;
     private RecyclerView.Adapter tripAdapter;
     public String fileName = "trips";
