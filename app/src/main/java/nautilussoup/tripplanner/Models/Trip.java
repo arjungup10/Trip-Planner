@@ -67,4 +67,8 @@ public class Trip implements Serializable {
         return tripMembers;
     }
 
+    public List getEvents() {
+        return events;
+    }
+
 }

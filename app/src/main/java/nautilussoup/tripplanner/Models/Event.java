@@ -3,20 +3,31 @@ package nautilussoup.tripplanner.Models;
 import android.location.Location;
 
 import java.io.Serializable;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Arjun Gupta on 4/21/2017.
  */
 public class Event implements Serializable {
     private String eventName;
-    private String earliestStartTime;
-    private String latestEndTime;
-    private Location eventLocation;
+    private GregorianCalendar eventTime;
 
-    public Event(String name, int startHour, int startMin, int endHour, int endMin, Location eventLocation) {
+    public Event(String name) {
         eventName = name;
-        earliestStartTime = String.valueOf(startHour) + ":" + String.valueOf(startMin);
-        latestEndTime = String.valueOf(endHour) + ":" + String.valueOf(endMin);
+        eventTime = new GregorianCalendar();
+    }
+
+    public Event(String name, Location eventLocation) {
+        eventName = name;
+        eventTime = new GregorianCalendar();
         //TO-DO set location
+    }
+
+    public String getName() {
+        return eventName;
+    }
+
+    public GregorianCalendar getEventTime() {
+        return eventTime;
     }
 }
