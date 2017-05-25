@@ -4,20 +4,27 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import nautilussoup.tripplanner.Controllers.PaymentAdapter;
+import nautilussoup.tripplanner.Controllers.PeopleAdapter;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
 import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class TripPaymentsFragment extends Fragment implements RecyclerViewClickListener {
-
-    private Trip tripToDetail;
-    private Trips trips;
+    public RecyclerView paymentRecyclerView;
+    private RecyclerView.Adapter paymentAdapter;
     private int tripPosition;
+    private Trips trips;
+    private Trip tripToDetail;
+    private View rootView;
+    private int adapterPosition;
 
     private OnFragmentInteractionListener mListener;
     public TripPaymentsFragment() {}
@@ -26,7 +33,6 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
         TripPaymentsFragment fragment = new TripPaymentsFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("tripPosition", tripPosition);
-        //bundle.putSerializable(TRIP_KEY, trip);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -41,6 +47,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_trip_payments, container, false);
+        registerForContextMenu(rootView.findViewById(R.id.rvPayments));
 
         trips = Trips.getInstance();
 
@@ -48,6 +55,19 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
             tripPosition = getArguments().getInt("tripPosition");
             tripToDetail = trips.getTripList().get(tripPosition);
         }
+
+        //create the recyclerview
+        paymentRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPayments);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        paymentRecyclerView.setHasFixedSize(false);
+        // use a linear layout manager
+        LinearLayoutManager llm = new LinearLayoutManager(rootView.getContext());
+        paymentRecyclerView.setLayoutManager(llm);
+
+        // specify an adapter (see also next example)
+        paymentAdapter = new PaymentAdapter(rootView.getContext(), tripToDetail, this);
+        paymentRecyclerView.setAdapter(paymentAdapter);
 
         return rootView;
     }
@@ -78,6 +98,12 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
+    }
+
+    public void addPaymentToTrip() {
+        tripToDetail.getTripBudget().addPayment(tripToDetail.getTripMember("Kevin Chiu"), 200, "For being a loser");
+        paymentAdapter.notifyDataSetChanged();
+        ((TripDetails) getActivity()).updateTrips();
     }
 
     /**

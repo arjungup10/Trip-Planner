@@ -5,10 +5,8 @@ import android.location.Location;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-/**
- * Created by Arjun Gupta on 4/21/2017.
- */
 public class Event implements Serializable {
+    private static final long serialVersionUID = 48L;
     private String eventName;
     private GregorianCalendar eventTime;
 

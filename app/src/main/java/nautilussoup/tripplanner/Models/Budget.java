@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Budget implements Serializable {
+    private static final long serialVersionUID = 42L;
     private double maxBudget;
     private double amountSpent;
     private List payments;

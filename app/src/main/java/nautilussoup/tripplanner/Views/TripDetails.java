@@ -106,6 +106,7 @@ public class TripDetails extends AppCompatActivity implements
             ((TripPeopleFragment) selectedFragment).addPersonToTrip();
         } else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
             Toast.makeText(this, "Create new payment", Toast.LENGTH_SHORT).show();
+            ((TripPaymentsFragment) selectedFragment).addPaymentToTrip();
         }
     }
 

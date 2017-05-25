@@ -14,6 +14,7 @@ import nautilussoup.tripplanner.Models.Person;
  * Created by Arjun Gupta on 4/21/2017.
  */
 public class Trip implements Serializable {
+    private static final long serialVersionUID = 56L;
     private String tripName;
     private Budget tripBudget;
     private Location tripLocation;
@@ -65,6 +66,15 @@ public class Trip implements Serializable {
 
     public List getTripMembers() {
         return tripMembers;
+    }
+
+    public Person getTripMember(String name) {
+        for(Object p : tripMembers) {
+            if(((Person)p).getName().equals(name)) {
+                return (Person)p;
+            }
+        }
+        return null;
     }
 
     public List getEvents() {

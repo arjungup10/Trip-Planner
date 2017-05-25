@@ -62,7 +62,6 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
         registerForContextMenu(rootView.findViewById(R.id.rvPeople));
 
         trips = Trips.getInstance();
-        Toast.makeText(getActivity(), trips.getTripList().get(0).getTripName(), Toast.LENGTH_SHORT).show();
 
         if (getArguments() != null) {
             tripPosition = getArguments().getInt("tripPosition");
