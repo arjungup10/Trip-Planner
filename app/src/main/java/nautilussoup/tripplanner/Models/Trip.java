@@ -43,8 +43,8 @@ public class Trip implements Serializable {
         tripMembers.add(new Person(name, home));
     }
 
-    public void addEvent(String name, int startHour, int startMin, int endHour, int endMin, Location eventLocation) {
-        //To-Do
+    public void addEvent(String name) {
+        events.add(new Event(name));
     }
 
     public String getTripName() {
