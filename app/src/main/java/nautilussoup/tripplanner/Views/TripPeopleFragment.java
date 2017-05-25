@@ -119,7 +119,6 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
         tripToDetail.addMember("Kevin Chiu");
         peopleAdapter.notifyDataSetChanged();
         ((TripDetails) getActivity()).updateTrips();
-
     }
 
 

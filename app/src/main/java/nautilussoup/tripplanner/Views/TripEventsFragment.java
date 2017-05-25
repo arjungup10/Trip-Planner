@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -55,6 +58,7 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_trip_events, container, false);
+        registerForContextMenu(rootView.findViewById(R.id.rvEvents));
 
         trips = Trips.getInstance();
 
@@ -64,7 +68,7 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
         }
 
         //create the recyclerview
-        eventRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);
+        eventRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvEvents);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         eventRecyclerView.setHasFixedSize(false);
@@ -105,7 +109,13 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
+        adapterPosition = position;
+    }
 
+    public void addEventToTrip() {
+        tripToDetail.addEvent("Kayaking");
+        eventAdapter.notifyDataSetChanged();
+        ((TripDetails) getActivity()).updateTrips();
     }
 
     /**
@@ -121,5 +131,22 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.trip_action_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_delete) {
+            tripToDetail.getEvents().remove(adapterPosition);
+            eventAdapter.notifyDataSetChanged();
+            ((TripDetails) getActivity()).updateTrips();
+            return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }

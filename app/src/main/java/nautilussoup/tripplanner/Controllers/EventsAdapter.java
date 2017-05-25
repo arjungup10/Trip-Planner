@@ -25,7 +25,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
 
         EventsViewHolder(View itemView) {
             super(itemView);
-            cvEvents = (CardView) itemView.findViewById(R.id.cvPeople);
+            cvEvents = (CardView) itemView.findViewById(R.id.cvEvents);
             eventName = (TextView) itemView.findViewById(R.id.event_Name);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

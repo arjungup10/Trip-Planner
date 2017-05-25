@@ -98,12 +98,12 @@ public class TripDetails extends AppCompatActivity implements
     public void createTripDetails(View v) {
         if (selectedFragment.getClass().equals(TripEventsFragment.class)) {
             Toast.makeText(this, "Create new event", Toast.LENGTH_SHORT).show();
+            ((TripEventsFragment) selectedFragment).addEventToTrip();
         } else if (selectedFragment.getClass().equals(TripItineraryFragment.class)) {
             Toast.makeText(this, "Refresh Itinerary", Toast.LENGTH_SHORT).show();
         } else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
             Toast.makeText(this, "Create new person", Toast.LENGTH_SHORT).show();
-            TripPeopleFragment exampleFragment = (TripPeopleFragment) selectedFragment;
-            exampleFragment.addPersonToTrip();
+            ((TripPeopleFragment) selectedFragment).addPersonToTrip();
         } else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
             Toast.makeText(this, "Create new payment", Toast.LENGTH_SHORT).show();
         }
