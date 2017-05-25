@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
 import nautilussoup.tripplanner.R;
+import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 
 /**
@@ -21,7 +22,7 @@ import nautilussoup.tripplanner.R;
  * Use the {@link TripItineraryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TripItineraryFragment extends Fragment {
+public class TripItineraryFragment extends Fragment implements RecyclerViewClickListener {
     private Trip tripToDetail;
     private Trips trips;
     private static final String TRIP_KEY = "trip_key";
@@ -82,6 +83,11 @@ public class TripItineraryFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+
     }
 
     /**

@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
 import nautilussoup.tripplanner.R;
+import nautilussoup.tripplanner.RecyclerViewClickListener;
 
-public class TripPaymentsFragment extends Fragment {
+public class TripPaymentsFragment extends Fragment implements RecyclerViewClickListener {
 
     private Trip tripToDetail;
     private Trips trips;
@@ -73,6 +74,10 @@ public class TripPaymentsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
     }
 
     /**
