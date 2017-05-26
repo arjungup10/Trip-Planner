@@ -19,7 +19,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     private static final String TAG = "";
     private List<Trip> trips;
     private Context context;
-    private static RecyclerViewClickListener itemListener;
+    private RecyclerViewClickListener itemListener;
 
     public class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cvTrip;

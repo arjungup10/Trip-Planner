@@ -134,7 +134,7 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_delete) {
+        if (id == R.id.action_delete) {
             tripToDetail.getEvents().remove(adapterPosition);
             eventAdapter.notifyDataSetChanged();
             ((TripDetails) getActivity()).updateTrips();

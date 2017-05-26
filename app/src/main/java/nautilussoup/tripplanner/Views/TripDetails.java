@@ -28,8 +28,6 @@ public class TripDetails extends AppCompatActivity implements
         TripPaymentsFragment.OnFragmentInteractionListener,
         TripPeopleFragment.OnFragmentInteractionListener {
 
-    public  final static String SER_KEY = "nautilussoup.tripplanner.Views.TripDetails.ser";
-    private TextView mTextMessage;
     private Trips trips;
     private Trip tripToDetail;
     private int tripPosition;
@@ -40,28 +38,31 @@ public class TripDetails extends AppCompatActivity implements
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_events:
-                    selectedFragment = TripEventsFragment.newInstance(tripPosition);
-                    break;
-                case R.id.navigation_itinerary:
-                    selectedFragment = TripItineraryFragment.newInstance(tripPosition);
-                    break;
-                case R.id.navigation_payments:
-                    selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
-                    break;
-                case R.id.navigation_people:
-                    selectedFragment = TripPeopleFragment.newInstance(tripPosition);
-                    break;
-            }
+                    switch (item.getItemId()) {
+                      case R.id.navigation_events:
+                          selectedFragment = TripEventsFragment.newInstance(tripPosition);
+                          break;
+                      case R.id.navigation_itinerary:
+                          selectedFragment = TripItineraryFragment.newInstance(tripPosition);
+                          break;
+                      case R.id.navigation_payments:
+                          selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
+                          break;
+                      case R.id.navigation_people:
+                          selectedFragment = TripPeopleFragment.newInstance(tripPosition);
+                          break;
+                      default:
+                          break;
+                    }
 
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.tripDetails, selectedFragment);
-            transaction.commit();
-            return true;
-        }
+                    FragmentTransaction transaction =
+                            getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.tripDetails, selectedFragment);
+                    transaction.commit();
+                    return true;
+                }
 
-    };
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

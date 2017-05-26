@@ -13,7 +13,8 @@ import android.widget.Toast;
 import nautilussoup.tripplanner.R;
 
 public class CreateTripActivity extends AppCompatActivity {
-    TextView tripNameField, tripBudgetField;
+    TextView tripNameField;
+    TextView tripBudgetField;
     Toolbar myToolbar;
 
     @Override
@@ -58,8 +59,7 @@ public class CreateTripActivity extends AppCompatActivity {
         if (tripNameField.getText().toString().matches("")) {
             Toast.makeText(this, "Please Enter a Valid Name", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else if (tripBudgetField.getText().toString().matches("")) {
+        } else if (tripBudgetField.getText().toString().matches("")) {
             Toast.makeText(this, "Please Enter a Valid Number", Toast.LENGTH_SHORT).show();
             return false;
         }

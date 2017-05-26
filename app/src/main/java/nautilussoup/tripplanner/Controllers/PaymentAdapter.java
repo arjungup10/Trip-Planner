@@ -17,7 +17,7 @@ import nautilussoup.tripplanner.RecyclerViewClickListener;
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentViewHolder> {
     private final Trip tripToDetail;
     private Context context;
-    private static RecyclerViewClickListener itemListener;
+    private RecyclerViewClickListener itemListener;
 
     public class PaymentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cvPayment;

@@ -16,7 +16,7 @@ import nautilussoup.tripplanner.RecyclerViewClickListener;
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {
     private final Trip tripToDetail;
     private Context context;
-    private static RecyclerViewClickListener itemListener;
+    private RecyclerViewClickListener itemListener;
 
     public class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cvPeople;
