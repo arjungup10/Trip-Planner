@@ -21,8 +21,8 @@ public class TestPerson {
 
     @Test
     public void testGetLocation() {
-//        testLocation.setLatitude(37.585355);
-//        testLocation.setLongitude(-122.047286);
-//        assertEquals(testLocation, testPerson.getHome());
+        //testLocation.setLatitude(37.585355);
+        //testLocation.setLongitude(-122.047286);
+        //assertEquals(testLocation, testPerson.getHome());
     }
 }

@@ -13,9 +13,9 @@ public class Person implements Serializable {
         this.name = name;
     }
 
-    public Person(String name, Location home) {
+    public Person(String name, Location targetLocation) {
         this.name = name;
-        //TO-DO: set location
+        home = targetLocation;
     }
 
     public String getName() {
