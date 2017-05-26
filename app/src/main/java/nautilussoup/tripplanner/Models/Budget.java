@@ -1,6 +1,7 @@
 package nautilussoup.tripplanner.Models;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Budget implements Serializable {
     private static final long serialVersionUID = 42L;
     private double maxBudget;
     private double amountSpent;
-    private List payments;
+    private ArrayList payments;
 
     public Budget(double maxBudget) {
         this.maxBudget = maxBudget;

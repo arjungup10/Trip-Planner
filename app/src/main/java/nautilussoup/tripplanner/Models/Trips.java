@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Trips implements Serializable {
     private static Trips instance;
-    private List<Trip> tripList;
+    private ArrayList<Trip> tripList;
 
     private Trips() {
         tripList = new ArrayList<Trip>();
@@ -24,12 +24,8 @@ public class Trips implements Serializable {
         return instance;
     }
 
-    public void setTripList(List<Trip> TripList) {
+    public void setTripList(ArrayList<Trip> TripList) {
         this.tripList = TripList;
-    }
-
-    public void setTrip(Trip tripToSet, int positionToSet) {
-        tripList.set(positionToSet, tripToSet);
     }
 
     public List<Trip> getTripList() {
