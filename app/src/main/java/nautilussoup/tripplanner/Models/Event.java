@@ -8,24 +8,32 @@ import java.util.GregorianCalendar;
 public class Event implements Serializable {
     private static final long serialVersionUID = 48L;
     private String eventName;
-    private GregorianCalendar eventTime;
+    private GregorianCalendar startTime;
+    private GregorianCalendar endTime;
+    private Location eventLocation;
 
     public Event(String name) {
         eventName = name;
-        eventTime = new GregorianCalendar();
+        startTime = new GregorianCalendar();
+        endTime = new GregorianCalendar();
     }
 
-    public Event(String name, Location eventLocation) {
+    public Event(String name, Location targetLocation) {
         eventName = name;
-        eventTime = new GregorianCalendar();
-        //TO-DO set location
+        startTime = new GregorianCalendar();
+        endTime = new GregorianCalendar();
+        this.eventLocation = targetLocation;
     }
 
     public String getName() {
         return eventName;
     }
 
-    public GregorianCalendar getEventTime() {
-        return eventTime;
+    public GregorianCalendar getStartTime() {
+        return startTime;
+    }
+
+    public GregorianCalendar getEndTime() {
+        return endTime;
     }
 }
