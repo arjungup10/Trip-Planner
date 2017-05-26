@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ import nautilussoup.tripplanner.RecyclerViewClickListener;
 import nautilussoup.tripplanner.Controllers.TripAdapter;
 
 public class TripActivity extends AppCompatActivity implements RecyclerViewClickListener {
-    private List<Trip> tripList;
+    private ArrayList<Trip> tripList;
     private static final String newTripNameId = "TripNameField";
     private static final String newTripBudgetId = "TripBudgetField";
     public static final int CREATE_TRIP_REQUEST = 1;
@@ -69,7 +70,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
             } else {
                 FileInputStream fis = openFileInput(fileName);
                 ObjectInputStream is = new ObjectInputStream(fis);
-                tripList = (List<Trip>) is.readObject();
+                tripList = (ArrayList<Trip>) is.readObject();
                 fis.close();
                 is.close();
             }

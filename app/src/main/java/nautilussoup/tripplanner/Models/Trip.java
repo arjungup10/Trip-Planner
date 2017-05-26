@@ -10,16 +10,13 @@ import nautilussoup.tripplanner.Models.Budget;
 import nautilussoup.tripplanner.Models.Event;
 import nautilussoup.tripplanner.Models.Person;
 
-/**
- * Created by Arjun Gupta on 4/21/2017.
- */
 public class Trip implements Serializable {
     private static final long serialVersionUID = 56L;
     private String tripName;
     private Budget tripBudget;
     private Location tripLocation;
-    private ArrayList tripMembers;
-    private ArrayList events;
+    private ArrayList<Person> tripMembers;
+    private ArrayList<Event> events;
 
     public Trip(String name, double maxBudget) {
         tripName = name;
