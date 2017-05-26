@@ -30,7 +30,7 @@ public class Budget implements Serializable {
         return amountSpent;
     }
 
-    public List getPayments() {
+    public ArrayList getPayments() {
         return payments;
     }
 }

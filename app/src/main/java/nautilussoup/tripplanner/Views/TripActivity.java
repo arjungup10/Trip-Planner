@@ -22,7 +22,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;

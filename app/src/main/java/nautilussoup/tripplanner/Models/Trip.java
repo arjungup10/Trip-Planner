@@ -58,11 +58,11 @@ public class Trip implements Serializable {
         return tripBudget;
     }
 
-    public List getTripMembers() {
+    public ArrayList<Person> getTripMembers() {
         return tripMembers;
     }
 
-    public List getEvents() {
+    public ArrayList<Event> getEvents() {
         return events;
     }
 
