@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import nautilussoup.tripplanner.Controllers.PaymentAdapter;
 import nautilussoup.tripplanner.Controllers.PeopleAdapter;
+import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
 import nautilussoup.tripplanner.R;
@@ -101,7 +105,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
     }
 
     public void addPaymentToTrip() {
-        tripToDetail.getTripBudget().addPayment(tripToDetail.getTripMember("Kevin Chiu"), 200, "For being a loser");
+        tripToDetail.getTripBudget().addPayment(new Person("Kevin Chiu"), 200, "For being a loser");
         paymentAdapter.notifyDataSetChanged();
         ((TripDetails) getActivity()).updateTrips();
     }
@@ -119,5 +123,22 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.trip_action_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_delete) {
+            tripToDetail.getTripBudget().getPayments().remove(adapterPosition);
+            paymentAdapter.notifyDataSetChanged();
+            ((TripDetails) getActivity()).updateTrips();
+            return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }

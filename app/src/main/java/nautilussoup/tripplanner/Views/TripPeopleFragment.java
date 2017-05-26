@@ -68,7 +68,6 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
             tripToDetail = trips.getTripList().get(tripPosition);
         }
 
-
         //create the recyclerview
         peopleRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvPeople);
         // use this setting to improve performance if you know that changes

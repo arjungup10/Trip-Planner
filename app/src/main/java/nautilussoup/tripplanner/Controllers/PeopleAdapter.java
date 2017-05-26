@@ -14,7 +14,6 @@ import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {
-    private static final String TAG = "";
     private final Trip tripToDetail;
     private Context context;
     private static RecyclerViewClickListener itemListener;

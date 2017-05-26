@@ -15,23 +15,23 @@ import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentViewHolder> {
-    private static final String TAG = "";
     private final Trip tripToDetail;
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
     public class PaymentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        CardView cvPayments;
+        CardView cvPayment;
         TextView personName;
-        TextView paymentAmount;
-        TextView paymentReason;
+        TextView amountPaid;
+        TextView reasonPaid;
 
         PaymentViewHolder(View itemView) {
             super(itemView);
-            cvPayments = (CardView) itemView.findViewById(R.id.cvPayments);
+            cvPayment = (CardView) itemView.findViewById(R.id.cvPayments);
             personName = (TextView) itemView.findViewById(R.id.payment_Person_Name);
-            paymentAmount = (TextView) itemView.findViewById(R.id.payment_Amount);
-            paymentReason = (TextView) itemView.findViewById(R.id.payment_Reason);
+            amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
+            reasonPaid = (TextView) itemView.findViewById(R.id.payment_Reason);
+
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
@@ -63,7 +63,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
     @Override
     public PaymentViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.content_people, viewGroup, false);
+                R.layout.content_payments, viewGroup, false);
         return new PaymentViewHolder(v);
     }
 
@@ -71,9 +71,9 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
     @Override
     public void onBindViewHolder(PaymentViewHolder paymentViewHolder, int i) {
         Payment p = (Payment) tripToDetail.getTripBudget().getPayments().get(i);
-//        paymentViewHolder.personName.setText(p.getPersonPaying().getName());
-        //paymentViewHolder.paymentReason.setText(p.getDescription());
-        //paymentViewHolder.paymentAmount.setText(Double.toString(p.getAmount()));
+        paymentViewHolder.personName.setText(p.getPersonPaying().getName());
+        paymentViewHolder.amountPaid.setText(Double.toString(p.getAmount()));
+        paymentViewHolder.reasonPaid.setText(p.getDescription());
     }
 
     @Override
