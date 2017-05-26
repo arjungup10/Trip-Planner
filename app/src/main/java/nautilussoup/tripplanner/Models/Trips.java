@@ -30,5 +30,4 @@ public class Trips implements Serializable {
         return tripList;
     }
 
-
 }
