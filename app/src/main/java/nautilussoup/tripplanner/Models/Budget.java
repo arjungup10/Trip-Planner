@@ -25,23 +25,11 @@ public class Budget implements Serializable {
         return maxBudget;
     }
 
-    public void setMaxBudget(double maxBudget) {
-        this.maxBudget = maxBudget;
-    }
-
     public double getAmountSpent() {
         return amountSpent;
     }
 
-    public void setAmountSpent(double amountSpent) {
-        this.amountSpent = amountSpent;
-    }
-
     public List getPayments() {
         return payments;
-    }
-
-    public void setPayments(List payments) {
-        this.payments = payments;
     }
 }
