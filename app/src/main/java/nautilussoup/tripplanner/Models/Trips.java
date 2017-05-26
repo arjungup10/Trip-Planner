@@ -18,9 +18,7 @@ public class Trips implements Serializable {
     public static Trips getInstance() {
         if (instance == null) {
             instance = new Trips();
-            Log.d("TAG", "Creating new instance of Trips");
         }
-        Log.d("TAG", "Utilizing instance of Trips");
         return instance;
     }
 
@@ -28,7 +26,7 @@ public class Trips implements Serializable {
         this.tripList = TripList;
     }
 
-    public List<Trip> getTripList() {
+    public ArrayList<Trip> getTripList() {
         return tripList;
     }
 
