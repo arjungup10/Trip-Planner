@@ -51,6 +51,5 @@ before_script:
   #- adb shell input keyevent 82 &
 
 script:
-   - sonar-scanner
    - ./gradlew clean jacocoTestDebugUnitTestReport sonarqube
    #./gradlew clean assembleDebug jacocoTestDebugUnitTestReport sonarqube
