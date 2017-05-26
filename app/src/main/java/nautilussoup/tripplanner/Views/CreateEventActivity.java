@@ -3,33 +3,32 @@ package nautilussoup.tripplanner.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import nautilussoup.tripplanner.R;
 
-public class CreateTripActivity extends AppCompatActivity {
-    TextView tripNameField, tripBudgetField;
+public class CreateEventActivity extends AppCompatActivity {
+    TextView eventNameField;
     Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_trip);
+        setContentView(R.layout.activity_create_event);
 
         // Set up toolbar
-        myToolbar = (Toolbar) findViewById(R.id.createTripToolbar);
+        myToolbar = (Toolbar) findViewById(R.id.createEventToolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        tripNameField = (TextView)findViewById(R.id.Title);
-        tripBudgetField = (TextView)findViewById(R.id.Budget);
+        eventNameField = (TextView)findViewById(R.id.Title);
     }
 
     @Override
@@ -50,17 +49,13 @@ public class CreateTripActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.create_trip_menu, menu);
+        inflater.inflate(R.menu.create_event_menu, menu);
         return true;
     }
 
-    public boolean createTrip(MenuItem menu) {
-        if (tripNameField.getText().toString().matches("")) {
+    public boolean createEvent(MenuItem menu) {
+        if (eventNameField.getText().toString().matches("")) {
             Toast.makeText(this, "Please Enter a Valid Name", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if (tripBudgetField.getText().toString().matches("")) {
-            Toast.makeText(this, "Please Enter a Valid Number", Toast.LENGTH_SHORT).show();
             return false;
         }
         finish();
@@ -70,8 +65,7 @@ public class CreateTripActivity extends AppCompatActivity {
     @Override
     public void finish() {
         Intent returnIntent = new Intent(getBaseContext(), TripActivity.class);
-        returnIntent.putExtra("TripNameField", tripNameField.getText().toString());
-        returnIntent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
+        returnIntent.putExtra("EventNameField", eventNameField.getText().toString());
         setResult(RESULT_OK, returnIntent);
         super.finish();
     }

@@ -153,7 +153,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_delete) {
+        if (id == R.id.action_delete) {
             tripList.remove(adapterPosition);
             updateTrips();
             tripAdapter.notifyDataSetChanged();
@@ -169,7 +169,6 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //Trips trips = Trips.getInstance();
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CREATE_TRIP_REQUEST && resultCode == RESULT_OK) {
             if (data.hasExtra(newTripNameId) && data.hasExtra(newTripBudgetId)) {
@@ -181,7 +180,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     public void updateTrips() {
-        try{
+        try {
             FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(tripList);
@@ -189,8 +188,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
 
             fos.close();
             oos.close();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();
             Log.e("", "exception", e);
         }

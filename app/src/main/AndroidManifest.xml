@@ -25,6 +25,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Views.CreateEventActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".Views.TripDetails">
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Views.TripDetails"
             android:label="@string/title_activity_trip_details"
             android:parentActivityName=".Views.TripActivity">
