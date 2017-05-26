@@ -70,9 +70,14 @@ public class CreateTripActivity extends AppCompatActivity {
     @Override
     public void finish() {
         Intent returnIntent = new Intent(getBaseContext(), TripActivity.class);
-        returnIntent.putExtra("TripNameField", tripNameField.getText().toString());
-        returnIntent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
-        setResult(RESULT_OK, returnIntent);
+        if (!tripNameField.getText().toString().matches("") &&
+                !tripBudgetField.getText().toString().matches("")) {
+            returnIntent.putExtra("TripNameField", tripNameField.getText().toString());
+            returnIntent.putExtra("TripBudgetField", tripBudgetField.getText().toString());
+            setResult(RESULT_OK, returnIntent);
+        } else {
+            setResult(RESULT_CANCELED, returnIntent);
+        }
         super.finish();
     }
 }

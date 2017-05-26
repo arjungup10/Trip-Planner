@@ -24,8 +24,8 @@ public class CreateEventActivity extends AppCompatActivity {
         // Set up toolbar
         myToolbar = (Toolbar) findViewById(R.id.createEventToolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         eventNameField = (TextView)findViewById(R.id.Title);
@@ -64,9 +64,13 @@ public class CreateEventActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        Intent returnIntent = new Intent(getBaseContext(), TripActivity.class);
-        returnIntent.putExtra("EventNameField", eventNameField.getText().toString());
-        setResult(RESULT_OK, returnIntent);
+        Intent returnIntent = new Intent();
+        if (!eventNameField.getText().toString().matches("")) {
+            returnIntent.putExtra("EventNameField", eventNameField.getText().toString());
+            setResult(RESULT_OK, returnIntent);
+        } else {
+            setResult(RESULT_CANCELED, returnIntent);
+        }
         super.finish();
     }
 }
