@@ -7,9 +7,6 @@ import nautilussoup.tripplanner.Models.Person;
 
 import static org.junit.Assert.*;
 
-/**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
- */
 public class TestBudget {
     private double maxBudget = 234.42;
     private double epsilon = 0.0001;

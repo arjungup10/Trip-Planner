@@ -1,11 +1,7 @@
 package nautilussoup.tripplanner.Models;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Trips implements Serializable {
     private static Trips instance;

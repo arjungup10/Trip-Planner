@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import nautilussoup.tripplanner.Controllers.PaymentAdapter;
-import nautilussoup.tripplanner.Controllers.PeopleAdapter;
 import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;

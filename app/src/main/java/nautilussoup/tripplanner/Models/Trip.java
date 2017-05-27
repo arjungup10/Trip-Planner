@@ -4,11 +4,6 @@ import android.location.Location;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
-import nautilussoup.tripplanner.Models.Budget;
-import nautilussoup.tripplanner.Models.Event;
-import nautilussoup.tripplanner.Models.Person;
 
 public class Trip implements Serializable {
     private static final long serialVersionUID = 56L;

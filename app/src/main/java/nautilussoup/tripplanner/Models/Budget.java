@@ -1,9 +1,7 @@
 package nautilussoup.tripplanner.Models;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Budget implements Serializable {
     private static final long serialVersionUID = 42L;

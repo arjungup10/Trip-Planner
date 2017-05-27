@@ -16,21 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import nautilussoup.tripplanner.Controllers.EventsAdapter;
-import nautilussoup.tripplanner.Controllers.PeopleAdapter;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
 import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TripEventsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TripEventsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TripEventsFragment extends Fragment implements RecyclerViewClickListener {
     private RecyclerView eventRecyclerView;
     private RecyclerView.Adapter eventAdapter;

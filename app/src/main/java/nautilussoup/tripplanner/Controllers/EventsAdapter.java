@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import nautilussoup.tripplanner.Models.Event;
-import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;

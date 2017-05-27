@@ -5,10 +5,6 @@ import android.location.Location;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import nautilussoup.tripplanner.Models.Budget;
 import nautilussoup.tripplanner.Models.Event;
 import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Trip;

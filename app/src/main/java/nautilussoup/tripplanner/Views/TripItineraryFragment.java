@@ -14,14 +14,6 @@ import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TripItineraryFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TripItineraryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TripItineraryFragment extends Fragment implements RecyclerViewClickListener {
     private Trip tripToDetail;
     private Trips trips;
