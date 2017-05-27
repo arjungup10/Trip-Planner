@@ -32,7 +32,7 @@ import nautilussoup.tripplanner.RecyclerViewClickListener;
  * create an instance of this fragment.
  */
 public class TripEventsFragment extends Fragment implements RecyclerViewClickListener {
-    public RecyclerView eventRecyclerView;
+    private RecyclerView eventRecyclerView;
     private RecyclerView.Adapter eventAdapter;
     private int adapterPosition;
     private OnFragmentInteractionListener mListener;

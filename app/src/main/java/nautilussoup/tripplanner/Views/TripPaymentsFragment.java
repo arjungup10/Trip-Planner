@@ -22,7 +22,7 @@ import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class TripPaymentsFragment extends Fragment implements RecyclerViewClickListener {
-    public RecyclerView paymentRecyclerView;
+    private RecyclerView paymentRecyclerView;
     private RecyclerView.Adapter paymentAdapter;
     private int tripPosition;
     private Trips trips;
