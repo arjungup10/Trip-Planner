@@ -29,15 +29,15 @@ import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class TripActivity extends AppCompatActivity implements RecyclerViewClickListener {
+    public static final int CREATE_TRIP_REQUEST = 1;
+    public static final int TRIP_DETAILS_REQUEST = 1;
+    public static final String fileName = "trips";
     private ArrayList<Trip> tripList;
     private static final String newTripNameId = "TripNameField";
     private static final String newTripBudgetId = "TripBudgetField";
-    public static final int CREATE_TRIP_REQUEST = 1;
-    public static final int TRIP_DETAILS_REQUEST = 1;
-    public RecyclerView tripRecyclerView;
+    private RecyclerView tripRecyclerView;
     private RecyclerView.Adapter tripAdapter;
-    public String fileName = "trips";
-    public int adapterPosition;
+    private int adapterPosition;
     private Trips trips;
 
     @Override
