@@ -1,6 +1,8 @@
 package nautilussoup.tripplanner.Views;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
     private Trip tripToDetail;
     private View rootView;
     private int adapterPosition;
+    private static final int REQUEST_CODE_CREATE_PAYMENT= 1;
 
     private OnFragmentInteractionListener mListener;
     public TripPaymentsFragment() {}
@@ -99,14 +102,15 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
         mListener = null;
     }
 
-    @Override
-    public void recyclerViewListClicked(View v, int position) {
+    public void addPaymentToTrip() {
+        Intent returnIntent = new Intent(getActivity(), CreatePaymentActivity.class);
+        returnIntent.putExtra("tripPosition", tripPosition);
+        startActivityForResult(returnIntent, REQUEST_CODE_CREATE_PAYMENT);
     }
 
-    public void addPaymentToTrip() {
-        tripToDetail.getTripBudget().addPayment(new Person("Kevin Chiu"), 200, "For being a loser");
-        paymentAdapter.notifyDataSetChanged();
-        ((TripDetails) getActivity()).updateTrips();
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
     }
 
     public interface OnFragmentInteractionListener {
@@ -129,5 +133,26 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (REQUEST_CODE_CREATE_PAYMENT == requestCode) {
+            if (Activity.RESULT_OK == resultCode) {
+                if (data.hasExtra("paymentAmountField") &&
+                        data.hasExtra("paymentDescriptionField") &&
+                        data.hasExtra("paymentPersonPositionField")) {
+                    tripToDetail.getTripBudget().addPayment(
+                            tripToDetail.getTripMembers().get(Integer.parseInt(data.getStringExtra("paymentPersonPositionField"))),
+                            Double.parseDouble(data.getStringExtra("paymentAmountField")),
+                            data.getStringExtra("paymentDescriptionField")
+                    );
+                    paymentAdapter.notifyDataSetChanged();
+                    ((TripDetails) getActivity()).updateTrips();
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+        }
     }
 }

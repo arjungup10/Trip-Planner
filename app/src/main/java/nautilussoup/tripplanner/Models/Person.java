@@ -25,4 +25,9 @@ public class Person implements Serializable {
     public Location getHome() {
         return home;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
