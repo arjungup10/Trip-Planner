@@ -1,6 +1,8 @@
 package nautilussoup.tripplanner.Views;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +31,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     private Trip tripToDetail;
     private View rootView;
     private int adapterPosition;
+    private static final int REQUEST_CODE_CREATE_PERSON = 1;
 
 
     public TripPeopleFragment() {}
@@ -105,9 +108,8 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
     }
 
     public void addPersonToTrip() {
-        tripToDetail.addMember("Kevin Chiu");
-        peopleAdapter.notifyDataSetChanged();
-        ((TripDetails) getActivity()).updateTrips();
+        Intent returnIntent = new Intent(getActivity(), CreatePersonActivity.class);
+        startActivityForResult(returnIntent, REQUEST_CODE_CREATE_PERSON);
     }
 
     public interface OnFragmentInteractionListener {
@@ -130,5 +132,20 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (REQUEST_CODE_CREATE_PERSON == requestCode) {
+            if (Activity.RESULT_OK == resultCode) {
+                if (data.hasExtra("PersonNameField")) {
+                    tripToDetail.addMember(data.getStringExtra("PersonNameField"));
+                    peopleAdapter.notifyDataSetChanged();
+                    ((TripDetails) getActivity()).updateTrips();
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+        }
     }
 }
