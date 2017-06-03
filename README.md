@@ -16,8 +16,8 @@ Planned Features
 * Allow users to share the itinerary with others
 
 
-Basic Initial System Architecture
------------------------------------
+System Architecture
+-------------------
 The system will save data internally to the user's device. In the future, database integration seems likely. the application will communicate with Google Maps API in order to receive time estimates. As location, will be necessary for the functionality of the application, it will leverage Google Maps and Google Play Services in order to properly notify the user.
 
 Below is a basic system architecture diagram of the program. As the program develops this is very likely to change.
