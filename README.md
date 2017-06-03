@@ -26,3 +26,8 @@ Below is a basic system architecture diagram of the program. As the program deve
 Below is an initial class diagram of the project. Similar to the architecture diagram, this is subject to change as the project changes and evolves. 
 ![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripPlanner%20Class%20Diagram.png)
 
+Screen Captures
+---------------
+![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Trip%20Screen.png)
+![alt-text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Payment%20Screen.png)
+
