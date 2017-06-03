@@ -26,7 +26,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
 
         PaymentViewHolder(View itemView) {
             super(itemView);
-            cvPayment = (CardView) itemView.findViewById(R.id.cvPayments);
+            //cvPayment = (CardView) itemView.findViewById(R.id.cvPayments);
             personName = (TextView) itemView.findViewById(R.id.payment_Person_Name);
             amountPaid = (TextView) itemView.findViewById(R.id.payment_Amount);
             reasonPaid = (TextView) itemView.findViewById(R.id.payment_Reason);
