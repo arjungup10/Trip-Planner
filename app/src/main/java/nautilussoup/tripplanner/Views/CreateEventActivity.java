@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -23,10 +24,20 @@ import java.util.TimeZone;
 
 import nautilussoup.tripplanner.R;
 
-public class CreateEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class CreateEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
     TextView eventNameField;
     Button eventStartTime;
+    Button eventEndTime;
+    Button eventStartDate;
+    Button eventEndDate;
     TimePickerDialog startTime;
+    TimePickerDialog endTime;
+    DatePickerDialog startDate;
+    DatePickerDialog endDate;
+    GregorianCalendar start;
+    GregorianCalendar end;
+    SimpleDateFormat dateFormat;
+    SimpleDateFormat timeFormat;
     Toolbar myToolbar;
 
     @Override
@@ -43,7 +54,9 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
 
         eventNameField = (TextView)findViewById(R.id.Title);
         eventStartTime = (Button)findViewById(R.id.eventStartTime);
-
+        eventEndTime = (Button)findViewById(R.id.eventEndTime);
+        eventStartDate = (Button)findViewById(R.id.eventStartDate);
+        eventEndDate = (Button)findViewById(R.id.eventEndDate);
 
         // Date and Time Setup
         // get the supported ids for GMT-08:00 (Pacific Standard Time)
@@ -64,19 +77,32 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         Calendar c = new GregorianCalendar(pdt);
         Date trialTime = new Date();
         c.setTime(trialTime);
-        int hour = c.get(c.HOUR_OF_DAY);
-        int minute = c.get(c.MINUTE);
-        String meridian;
-        if (c.get(c.AM_PM) == 1) {
-            meridian = "AM";
-        } else {
-            meridian = "PM";
-        }
-        eventStartTime.setText(hour % 12 + ":" + minute + " " + meridian);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
 
+        timeFormat = new SimpleDateFormat("hh:mm aa");
+        dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
+
+        end = start = new GregorianCalendar(year, month, day, hour, minute);
+
+        eventStartTime.setText(formatDate(timeFormat, start));
+        eventEndTime.setText(formatDate(timeFormat, end));
 
         startTime = TimePickerDialog.newInstance(this, false);
         startTime.setVersion(TimePickerDialog.Version.VERSION_2);
+        endTime = TimePickerDialog.newInstance(this, false);
+        endTime.setVersion(TimePickerDialog.Version.VERSION_2);
+
+        startDate = DatePickerDialog.newInstance(this, year, month, day);
+        startDate.setVersion(DatePickerDialog.Version.VERSION_2);
+        endDate = DatePickerDialog.newInstance(this, year, month, day);
+        endDate.setVersion(DatePickerDialog.Version.VERSION_2);
+
+
+
 
 
     }
@@ -126,20 +152,57 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        String time = "You picked the following time: "+hourOfDay+"h"+minute+"m"+second;
-        //startTime.set
-        //timeTextView.setText(time);
-        String meridian;
-        if (hourOfDay < 11 || hourOfDay == 24) {
-            meridian = "AM";
-        } else {
-            meridian = "PM";
+        if (view == startTime) {
+            start.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            start.set(Calendar.MINUTE, minute);
+
+            eventStartTime.setText(formatDate(timeFormat, start));
         }
-        eventStartTime.setText(hourOfDay % 12 + ":" + minute + " " + meridian);
+        else if (view == endTime) {
+            end.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            end.set(Calendar.MINUTE, minute);
+            eventEndTime.setText(formatDate(timeFormat, end));
+        }
+
     }
 
-    public void openTimePicker(View v) {
-        Toast.makeText(this, "yay make a timepicker now", Toast.LENGTH_SHORT).show();
-        startTime.show(getFragmentManager(), "TimepickerDialog");
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        if (view == startDate) {
+            start.set(Calendar.YEAR, year);
+            start.set(Calendar.MONTH, monthOfYear);
+            start.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            eventStartDate.setText(formatDate(dateFormat, start));
+        } else if (view == endDate) {
+            end.set(Calendar.YEAR, year);
+            end.set(Calendar.MONTH, monthOfYear);
+            end.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            eventEndDate.setText(formatDate(dateFormat, end));
+        }
     }
+
+    public void openStartTimePicker(View v) {
+        startTime.show(getFragmentManager(), "StartTimepickerDialog");
+    }
+
+    public void openStartDatePicker(View v) {
+        startDate.show(getFragmentManager(), "StartDatepickerDialog");
+    }
+
+    public void openEndTimePicker(View v) {
+        endTime.show(getFragmentManager(), "EndTimepickerDialog");
+    }
+
+    public void openEndDatePicker(View v) {
+        endDate.show(getFragmentManager(), "EndDatepickerDialog");
+    }
+
+    public String formatDate(SimpleDateFormat fmt, GregorianCalendar calendar) {
+        fmt.setCalendar(calendar);
+        return fmt.format(calendar.getTime());
+    }
+
+
 }
