@@ -7,6 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 import nautilussoup.tripplanner.Models.Event;
 import nautilussoup.tripplanner.Models.Trip;
@@ -17,15 +23,21 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private final Trip tripToDetail;
     private Context context;
     private RecyclerViewClickListener itemListener;
+    SimpleDateFormat timeFormat;
+    SimpleDateFormat dateFormat;
 
     public class EventsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cvEvents;
         TextView eventName;
+        TextView eventDate;
+        TextView eventTime;
 
         EventsViewHolder(View itemView) {
             super(itemView);
             cvEvents = (CardView) itemView.findViewById(R.id.cvEvents);
             eventName = (TextView) itemView.findViewById(R.id.event_Name);
+            eventDate = (TextView) itemView.findViewById(R.id.Date);
+            eventTime = (TextView) itemView.findViewById(R.id.Time);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
@@ -58,6 +70,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     public EventsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.content_events, viewGroup, false);
+        timeFormat = new SimpleDateFormat("hh:mm aa");
+        dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
         return new EventsViewHolder(v);
     }
 
@@ -66,6 +80,27 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     public void onBindViewHolder(EventsViewHolder eventsViewHolder, int i) {
         Event e = (Event) tripToDetail.getEvents().get(i);
         eventsViewHolder.eventName.setText(e.getName());
+
+        String startDate = formatDate(dateFormat, e.getStartTime());
+        String endDate = formatDate(dateFormat, e.getEndTime());
+        String startTime = formatDate(timeFormat, e.getStartTime());
+        String endTime = formatDate(timeFormat, e.getEndTime());
+
+        //Toast.makeText(context, startTime, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, endTime, Toast.LENGTH_SHORT).show();
+
+        if (startDate.equals(endDate)) {
+            eventsViewHolder.eventDate.setText(startDate);
+        } else {
+            eventsViewHolder.eventDate.setText(startDate + " - " + endDate);
+        }
+
+        if (startTime.equals(endTime)) {
+            eventsViewHolder.eventTime.setText(startTime);
+        } else {
+            eventsViewHolder.eventTime.setText(startTime + " - " + endTime);
+        }
+
     }
 
     @Override
@@ -77,5 +112,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     @Override
     public int getItemCount() {
         return tripToDetail.getEvents().size();
+    }
+
+    public String formatDate(SimpleDateFormat fmt, GregorianCalendar calendar) {
+        fmt.setCalendar(calendar);
+        return fmt.format(calendar.getTime());
     }
 }

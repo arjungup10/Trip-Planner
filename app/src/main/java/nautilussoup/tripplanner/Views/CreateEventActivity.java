@@ -86,10 +86,14 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         timeFormat = new SimpleDateFormat("hh:mm aa");
         dateFormat = new SimpleDateFormat("EEE, MMM dd, yyyy");
 
-        end = start = new GregorianCalendar(year, month, day, hour, minute);
+
+        start = new GregorianCalendar(year, month, day, hour, minute);
+        end = new GregorianCalendar(year, month, day, hour, minute);
 
         eventStartTime.setText(formatDate(timeFormat, start));
         eventEndTime.setText(formatDate(timeFormat, end));
+        eventStartDate.setText(formatDate(dateFormat, start));
+        eventEndDate.setText(formatDate(dateFormat, end));
 
         startTime = TimePickerDialog.newInstance(this, false);
         startTime.setVersion(TimePickerDialog.Version.VERSION_2);
@@ -100,11 +104,6 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         startDate.setVersion(DatePickerDialog.Version.VERSION_2);
         endDate = DatePickerDialog.newInstance(this, year, month, day);
         endDate.setVersion(DatePickerDialog.Version.VERSION_2);
-
-
-
-
-
     }
 
     @Override
@@ -143,6 +142,8 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         Intent returnIntent = new Intent();
         if (!eventNameField.getText().toString().matches("")) {
             returnIntent.putExtra("EventNameField", eventNameField.getText().toString());
+            returnIntent.putExtra("StartInfo", start);
+            returnIntent.putExtra("EndInfo", end);
             setResult(RESULT_OK, returnIntent);
         } else {
             setResult(RESULT_CANCELED, returnIntent);
@@ -163,7 +164,6 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
             end.set(Calendar.MINUTE, minute);
             eventEndTime.setText(formatDate(timeFormat, end));
         }
-
     }
 
     @Override
@@ -178,7 +178,6 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
             end.set(Calendar.YEAR, year);
             end.set(Calendar.MONTH, monthOfYear);
             end.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
             eventEndDate.setText(formatDate(dateFormat, end));
         }
     }
@@ -203,6 +202,4 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         fmt.setCalendar(calendar);
         return fmt.format(calendar.getTime());
     }
-
-
 }

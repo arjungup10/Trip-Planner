@@ -4,6 +4,7 @@ import android.location.Location;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class Trip implements Serializable {
     private static final long serialVersionUID = 56L;
@@ -38,11 +39,8 @@ public class Trip implements Serializable {
         events.add(new Event(name));
     }
 
-    public void addEvent(String name, int startYear, int startMonth, int startDayOfMonth,
-                         int startHourOfDay, int startMinute, int endYear, int endMonth,
-                         int endDayOfMonth, int endHourOfDay, int endMinute) {
-        events.add(new Event(name, startYear, startMonth, startDayOfMonth, startHourOfDay,
-                startMinute, endYear, endMonth, endDayOfMonth, endHourOfDay, endMinute));
+    public void addEvent(String name, GregorianCalendar start, GregorianCalendar end) {
+        events.add(new Event(name, start, end));
     }
 
     public String getTripName() {

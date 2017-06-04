@@ -19,14 +19,10 @@ public class Event implements Serializable {
         endTime = new GregorianCalendar();
     }
 
-    public Event(String name,
-                 int startYear, int startMonth, int startDayOfMonth,
-                 int startHourOfDay, int startMinute,
-                 int endYear, int endMonth, int endDayOfMonth, int endHourOfDay, int endMinute) {
+    public Event(String name, GregorianCalendar start, GregorianCalendar end) {
         eventName = name;
-        startTime = new GregorianCalendar(
-                startYear, startMonth, startDayOfMonth, startHourOfDay, startMinute);
-        endTime = new GregorianCalendar(endYear, endMonth, endDayOfMonth, endHourOfDay, endMinute);
+        startTime = start;
+        endTime = end;
     }
 
     public Event(String name, Location targetLocation) {

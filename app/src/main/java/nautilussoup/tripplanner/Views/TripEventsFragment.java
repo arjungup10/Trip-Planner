@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.GregorianCalendar;
+
 import nautilussoup.tripplanner.Controllers.EventsAdapter;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
@@ -107,7 +109,6 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
     }
 
     public void addEventToTrip() {
-        //tripToDetail.addEvent("Kayaking");
         Intent returnIntent = new Intent(getActivity(), CreateEventActivity.class);
         startActivityForResult(returnIntent, REQUEST_CODE_CREATE_EVENT);
     }
@@ -138,8 +139,10 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (REQUEST_CODE_CREATE_EVENT == requestCode) {
             if (Activity.RESULT_OK == resultCode) {
-                if (data.hasExtra("EventNameField")) {
-                    tripToDetail.addEvent(data.getStringExtra("EventNameField"));
+                if (data.hasExtra("EventNameField") && data.hasExtra("StartInfo") && data.hasExtra("EndInfo")) {
+                    tripToDetail.addEvent(data.getStringExtra("EventNameField"),
+                        (GregorianCalendar) data.getSerializableExtra("StartInfo"),
+                        (GregorianCalendar) data.getSerializableExtra("EndInfo"));
                     eventAdapter.notifyDataSetChanged();
                     ((TripDetails) getActivity()).updateTrips();
                 }
