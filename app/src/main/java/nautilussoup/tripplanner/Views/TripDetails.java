@@ -43,7 +43,7 @@ public class TripDetails extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                       case R.id.navigation_events:
-                          header.setText("Events");
+                          header.setText("Total Events: " + tripToDetail.getEvents().size());
                           selectedFragment = TripEventsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_itinerary:
@@ -100,7 +100,7 @@ public class TripDetails extends AppCompatActivity implements
         transaction.commit();
 
         header = (TextView) findViewById(R.id.trip_Details_Header);
-        header.setText("Events");
+        header.setText("Total Events: " + tripToDetail.getEvents().size());
     }
 
     @Override

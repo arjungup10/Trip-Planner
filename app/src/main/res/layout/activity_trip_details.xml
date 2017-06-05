@@ -25,11 +25,14 @@
         </android.support.v7.widget.Toolbar>
 
         <TextView
+            android:id="@+id/trip_Details_Header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/trip_Details_Header"
             android:textSize="30sp"
             android:background="@color/colorPrimary"
+            android:textColor="@color/mdtp_white"
+            android:paddingLeft="8dp"
+            android:paddingBottom="10dp"
             />
 
     </android.support.design.widget.AppBarLayout>

@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+//import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+//import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,16 +24,16 @@ import java.util.TimeZone;
 
 import nautilussoup.tripplanner.R;
 
-public class CreateEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+public class CreateEventActivity extends AppCompatActivity {
     TextView eventNameField;
     Button eventStartTime;
     Button eventEndTime;
     Button eventStartDate;
     Button eventEndDate;
-    TimePickerDialog startTime;
-    TimePickerDialog endTime;
-    DatePickerDialog startDate;
-    DatePickerDialog endDate;
+//    TimePickerDialog startTime;
+//    TimePickerDialog endTime;
+//    DatePickerDialog startDate;
+//    DatePickerDialog endDate;
     GregorianCalendar start;
     GregorianCalendar end;
     SimpleDateFormat dateFormat;
@@ -95,15 +95,15 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         eventStartDate.setText(formatDate(dateFormat, start));
         eventEndDate.setText(formatDate(dateFormat, end));
 
-        startTime = TimePickerDialog.newInstance(this, false);
-        startTime.setVersion(TimePickerDialog.Version.VERSION_2);
-        endTime = TimePickerDialog.newInstance(this, false);
-        endTime.setVersion(TimePickerDialog.Version.VERSION_2);
-
-        startDate = DatePickerDialog.newInstance(this, year, month, day);
-        startDate.setVersion(DatePickerDialog.Version.VERSION_2);
-        endDate = DatePickerDialog.newInstance(this, year, month, day);
-        endDate.setVersion(DatePickerDialog.Version.VERSION_2);
+//        startTime = TimePickerDialog.newInstance(this, false);
+//        startTime.setVersion(TimePickerDialog.Version.VERSION_2);
+//        endTime = TimePickerDialog.newInstance(this, false);
+//        endTime.setVersion(TimePickerDialog.Version.VERSION_2);
+//
+//        startDate = DatePickerDialog.newInstance(this, year, month, day);
+//        startDate.setVersion(DatePickerDialog.Version.VERSION_2);
+//        endDate = DatePickerDialog.newInstance(this, year, month, day);
+//        endDate.setVersion(DatePickerDialog.Version.VERSION_2);
     }
 
     @Override
@@ -151,52 +151,52 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         super.finish();
     }
 
-    @Override
-    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        if (view == startTime) {
-            start.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            start.set(Calendar.MINUTE, minute);
-
-            eventStartTime.setText(formatDate(timeFormat, start));
-        }
-        else if (view == endTime) {
-            end.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            end.set(Calendar.MINUTE, minute);
-            eventEndTime.setText(formatDate(timeFormat, end));
-        }
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        if (view == startDate) {
-            start.set(Calendar.YEAR, year);
-            start.set(Calendar.MONTH, monthOfYear);
-            start.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-            eventStartDate.setText(formatDate(dateFormat, start));
-        } else if (view == endDate) {
-            end.set(Calendar.YEAR, year);
-            end.set(Calendar.MONTH, monthOfYear);
-            end.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            eventEndDate.setText(formatDate(dateFormat, end));
-        }
-    }
-
-    public void openStartTimePicker(View v) {
-        startTime.show(getFragmentManager(), "StartTimepickerDialog");
-    }
-
-    public void openStartDatePicker(View v) {
-        startDate.show(getFragmentManager(), "StartDatepickerDialog");
-    }
-
-    public void openEndTimePicker(View v) {
-        endTime.show(getFragmentManager(), "EndTimepickerDialog");
-    }
-
-    public void openEndDatePicker(View v) {
-        endDate.show(getFragmentManager(), "EndDatepickerDialog");
-    }
+//    @Override
+//    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+//        if (view == startTime) {
+//            start.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//            start.set(Calendar.MINUTE, minute);
+//
+//            eventStartTime.setText(formatDate(timeFormat, start));
+//        }
+//        else if (view == endTime) {
+//            end.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//            end.set(Calendar.MINUTE, minute);
+//            eventEndTime.setText(formatDate(timeFormat, end));
+//        }
+//    }
+//
+//    @Override
+//    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+//        if (view == startDate) {
+//            start.set(Calendar.YEAR, year);
+//            start.set(Calendar.MONTH, monthOfYear);
+//            start.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//
+//            eventStartDate.setText(formatDate(dateFormat, start));
+//        } else if (view == endDate) {
+//            end.set(Calendar.YEAR, year);
+//            end.set(Calendar.MONTH, monthOfYear);
+//            end.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//            eventEndDate.setText(formatDate(dateFormat, end));
+//        }
+//    }
+//
+//    public void openStartTimePicker(View v) {
+//        startTime.show(getFragmentManager(), "StartTimepickerDialog");
+//    }
+//
+//    public void openStartDatePicker(View v) {
+//        startDate.show(getFragmentManager(), "StartDatepickerDialog");
+//    }
+//
+//    public void openEndTimePicker(View v) {
+//        endTime.show(getFragmentManager(), "EndTimepickerDialog");
+//    }
+//
+//    public void openEndDatePicker(View v) {
+//        endDate.show(getFragmentManager(), "EndDatepickerDialog");
+//    }
 
     public String formatDate(SimpleDateFormat fmt, GregorianCalendar calendar) {
         fmt.setCalendar(calendar);
