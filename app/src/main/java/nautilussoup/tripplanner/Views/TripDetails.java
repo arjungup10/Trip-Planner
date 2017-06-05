@@ -12,7 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -31,6 +34,7 @@ public class TripDetails extends AppCompatActivity implements
     private Trip tripToDetail;
     private int tripPosition;
     private Fragment selectedFragment;
+    private TextView header;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,15 +43,19 @@ public class TripDetails extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                       case R.id.navigation_events:
+                          header.setText("Events");
                           selectedFragment = TripEventsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_itinerary:
+                          header.setText("Itinerary");
                           selectedFragment = TripItineraryFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_payments:
+                          header.setText("People");
                           selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_people:
+                          header.setText("Payments");
                           selectedFragment = TripPeopleFragment.newInstance(tripPosition);
                           break;
                       default:
@@ -90,6 +98,9 @@ public class TripDetails extends AppCompatActivity implements
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.tripDetails, selectedFragment);
         transaction.commit();
+
+        header = (TextView) findViewById(R.id.trip_Details_Header);
+        header.setText("Events");
     }
 
     @Override
@@ -97,15 +108,12 @@ public class TripDetails extends AppCompatActivity implements
 
     public void createTripDetails(View v) {
         if (selectedFragment.getClass().equals(TripEventsFragment.class)) {
-            Toast.makeText(this, "Create new event", Toast.LENGTH_SHORT).show();
             ((TripEventsFragment) selectedFragment).addEventToTrip();
         } else if (selectedFragment.getClass().equals(TripItineraryFragment.class)) {
             Toast.makeText(this, "Refresh Itinerary", Toast.LENGTH_SHORT).show();
         } else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
-            Toast.makeText(this, "Create new person", Toast.LENGTH_SHORT).show();
             ((TripPeopleFragment) selectedFragment).addPersonToTrip();
         } else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
-            Toast.makeText(this, "Create new payment", Toast.LENGTH_SHORT).show();
             ((TripPaymentsFragment) selectedFragment).addPaymentToTrip();
         }
     }
