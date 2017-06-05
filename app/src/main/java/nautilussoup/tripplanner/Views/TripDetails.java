@@ -43,25 +43,22 @@ public class TripDetails extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                       case R.id.navigation_events:
-                          header.setText("Total Events: " + tripToDetail.getEvents().size());
                           selectedFragment = TripEventsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_itinerary:
-                          header.setText("Itinerary");
                           selectedFragment = TripItineraryFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_payments:
-                          header.setText("Amount Spent: " + tripToDetail.getTripBudget().getAmountSpent());
                           selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_people:
-                          header.setText("Total Trip Members: " + tripToDetail.getTripMembers().size());
                           selectedFragment = TripPeopleFragment.newInstance(tripPosition);
                           break;
                       default:
                           break;
                     }
 
+                    updateHeader();
                     FragmentTransaction transaction =
                             getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.tripDetails, selectedFragment);
@@ -100,7 +97,7 @@ public class TripDetails extends AppCompatActivity implements
         transaction.commit();
 
         header = (TextView) findViewById(R.id.trip_Details_Header);
-        header.setText("Total Events: " + tripToDetail.getEvents().size());
+        updateHeader();
     }
 
     @Override
@@ -129,6 +126,19 @@ public class TripDetails extends AppCompatActivity implements
         } catch (Exception e) {
             Toast.makeText(this, "We got a problem", Toast.LENGTH_SHORT).show();
             Log.e("", "exception", e);
+        }
+    }
+
+    public void updateHeader() {
+        if (selectedFragment.getClass().equals(TripEventsFragment.class)) {
+            header.setText("Total Events: " + tripToDetail.getEvents().size());
+        } else if (selectedFragment.getClass().equals(TripItineraryFragment.class)) {
+            header.setText("Itinerary");
+            Toast.makeText(this, "Refresh Itinerary", Toast.LENGTH_SHORT).show();
+        } else if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
+            header.setText("Amount Spent: " + tripToDetail.getTripBudget().getAmountSpent());
+        } else if (selectedFragment.getClass().equals(TripPeopleFragment.class)) {
+            header.setText("Total Trip Members: " + tripToDetail.getTripMembers().size());
         }
     }
 }

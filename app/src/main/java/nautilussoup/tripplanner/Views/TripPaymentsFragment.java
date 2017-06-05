@@ -161,6 +161,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
             tripToDetail.getTripBudget().removePayment(adapterPosition);
             paymentAdapter.notifyDataSetChanged();
             ((TripDetails) getActivity()).updateTrips();
+            ((TripDetails) getActivity()).updateHeader();
             return true;
         }
         return super.onContextItemSelected(item);
@@ -180,6 +181,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
                     );
                     paymentAdapter.notifyDataSetChanged();
                     ((TripDetails) getActivity()).updateTrips();
+                    ((TripDetails) getActivity()).updateHeader();
                 }
             } else {
                 super.onActivityResult(requestCode, resultCode, data);

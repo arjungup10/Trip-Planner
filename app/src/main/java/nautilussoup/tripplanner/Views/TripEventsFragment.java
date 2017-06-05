@@ -130,6 +130,7 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
             tripToDetail.getEvents().remove(adapterPosition);
             eventAdapter.notifyDataSetChanged();
             ((TripDetails) getActivity()).updateTrips();
+            ((TripDetails) getActivity()).updateHeader();
             return true;
         }
         return super.onContextItemSelected(item);
@@ -145,6 +146,7 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
                         (GregorianCalendar) data.getSerializableExtra("EndInfo"));
                     eventAdapter.notifyDataSetChanged();
                     ((TripDetails) getActivity()).updateTrips();
+                    ((TripDetails) getActivity()).updateHeader();
                 }
             } else {
                 super.onActivityResult(requestCode, resultCode, data);

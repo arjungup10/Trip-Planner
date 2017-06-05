@@ -161,6 +161,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
             tripToDetail.getTripMembers().remove(adapterPosition);
             peopleAdapter.notifyDataSetChanged();
             ((TripDetails) getActivity()).updateTrips();
+            ((TripDetails) getActivity()).updateHeader();
             return true;
         }
         return super.onContextItemSelected(item);
@@ -174,6 +175,7 @@ public class TripPeopleFragment extends Fragment implements RecyclerViewClickLis
                     tripToDetail.addMember(data.getStringExtra("PersonNameField"));
                     peopleAdapter.notifyDataSetChanged();
                     ((TripDetails) getActivity()).updateTrips();
+                    ((TripDetails) getActivity()).updateHeader();
                 }
             } else {
                 super.onActivityResult(requestCode, resultCode, data);
