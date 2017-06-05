@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import nautilussoup.tripplanner.Controllers.PaymentAdapter;
 import nautilussoup.tripplanner.Models.Person;
@@ -33,7 +34,8 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
     private Trip tripToDetail;
     private View rootView;
     private int adapterPosition;
-    private static final int REQUEST_CODE_CREATE_PAYMENT= 1;
+    private static final int REQUEST_CODE_CREATE_PAYMENT = 1;
+    private static final int REQUEST_CODE_CALC_PAYMENTS = 2;
 
     private OnFragmentInteractionListener mListener;
     public TripPaymentsFragment() {}
@@ -139,6 +141,11 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
         startActivityForResult(returnIntent, REQUEST_CODE_CREATE_PAYMENT);
     }
 
+    public void calculatePayments() {
+        Intent returnIntent = new Intent(getActivity(), CalculatePaymentsActivity.class);
+        returnIntent.putExtra("tripPosition", tripPosition);
+        startActivityForResult(returnIntent, REQUEST_CODE_CALC_PAYMENTS);
+    }
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
@@ -186,6 +193,8 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
             } else {
                 super.onActivityResult(requestCode, resultCode, data);
             }
+        } else if (REQUEST_CODE_CALC_PAYMENTS == requestCode) {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

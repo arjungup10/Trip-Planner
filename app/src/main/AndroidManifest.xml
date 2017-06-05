@@ -53,6 +53,10 @@
             android:label="@string/title_activity_trip_details"
             android:parentActivityName=".Views.TripActivity">
         </activity>
+        <activity
+            android:name=".Views.CalculatePaymentsActivity"
+            android:label="CalculatePaymentsActivity">
+        </activity>
     </application>
 
 </manifest>

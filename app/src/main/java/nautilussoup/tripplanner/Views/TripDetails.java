@@ -10,8 +10,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ public class TripDetails extends AppCompatActivity implements
     private int tripPosition;
     private Fragment selectedFragment;
     private TextView header;
+    private Button calcPaymentsButton;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,15 +47,19 @@ public class TripDetails extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                       case R.id.navigation_events:
+                          calcPaymentsButton.setVisibility(View.INVISIBLE);
                           selectedFragment = TripEventsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_itinerary:
+                          calcPaymentsButton.setVisibility(View.INVISIBLE);
                           selectedFragment = TripItineraryFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_payments:
+                          calcPaymentsButton.setVisibility(View.VISIBLE);
                           selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_people:
+                          calcPaymentsButton.setVisibility(View.INVISIBLE);
                           selectedFragment = TripPeopleFragment.newInstance(tripPosition);
                           break;
                       default:
@@ -97,6 +105,8 @@ public class TripDetails extends AppCompatActivity implements
         transaction.commit();
 
         header = (TextView) findViewById(R.id.trip_Details_Header);
+        calcPaymentsButton = (Button) findViewById(R.id.calcPaymentsButton);
+        calcPaymentsButton.setVisibility(View.INVISIBLE);
         updateHeader();
     }
 
@@ -141,4 +151,36 @@ public class TripDetails extends AppCompatActivity implements
             header.setText("Total Trip Members: " + tripToDetail.getTripMembers().size());
         }
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
+//            MenuInflater inflater = getMenuInflater();
+//            inflater.inflate(R.menu.payment_details_menu, menu);
+//        }
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.calcPayments) {
+//            Toast.makeText(this, "Calc Payments", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+
+    public boolean openCalculatePayments(View v) {
+        ((TripPaymentsFragment) selectedFragment).calculatePayments();
+        return true;
+    }
+
 }

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/payment_details_menu">
+
+    <!-- Settings, should always be in the overflow -->
+    <item
+        android:id="@+id/calcPayments"
+        android:title="Calculate"
+        android:onClick="openCalculatePayments"
+        app:showAsAction="always">
+    </item>
+</menu>
