@@ -20,6 +20,12 @@ public class Budget implements Serializable {
         payments.add(new Payment(personPaying, amount, description));
     }
 
+    public void removePayment(int position) {
+        Payment pToRemove = (Payment) payments.get(position);
+        amountSpent -= pToRemove.getAmount();
+        payments.remove(position);
+    }
+
     public double getMaxBudget() {
         return maxBudget;
     }

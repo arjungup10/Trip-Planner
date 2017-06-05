@@ -158,7 +158,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_delete) {
-            tripToDetail.getTripBudget().getPayments().remove(adapterPosition);
+            tripToDetail.getTripBudget().removePayment(adapterPosition);
             paymentAdapter.notifyDataSetChanged();
             ((TripDetails) getActivity()).updateTrips();
             return true;
