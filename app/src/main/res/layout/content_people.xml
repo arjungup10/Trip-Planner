@@ -5,22 +5,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:padding="2dp">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cvPeople"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
-        card_view:cardElevation="2dp"
-        card_view:cardCornerRadius="2dp"
-        card_view:cardUseCompatPadding="true"
-        >
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             >
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,7 +20,5 @@
                 />
 
         </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
 
 </LinearLayout>

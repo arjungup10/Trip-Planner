@@ -19,12 +19,13 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
     private RecyclerViewClickListener itemListener;
 
     public class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        CardView cvPeople;
+        //CardView cvPeople;
         TextView personName;
+
 
         PeopleViewHolder(View itemView) {
             super(itemView);
-            cvPeople = (CardView) itemView.findViewById(R.id.cvPeople);
+            //cvPeople = (CardView) itemView.findViewById(R.id.cvPeople);
             personName = (TextView) itemView.findViewById(R.id.person_Name);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
