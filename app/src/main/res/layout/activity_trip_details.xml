@@ -28,10 +28,9 @@
             android:id="@+id/trip_Details_Header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
             android:background="@color/colorPrimary"
-            android:textColor="@color/mdtp_white"
-            android:paddingLeft="8dp"
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
             android:paddingBottom="10dp"
             />
 

@@ -51,11 +51,11 @@ public class TripDetails extends AppCompatActivity implements
                           selectedFragment = TripItineraryFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_payments:
-                          header.setText("People");
+                          header.setText("Amount Spent: " + tripToDetail.getTripBudget().getAmountSpent());
                           selectedFragment = TripPaymentsFragment.newInstance(tripPosition);
                           break;
                       case R.id.navigation_people:
-                          header.setText("Payments");
+                          header.setText("Total Trip Members: " + tripToDetail.getTripMembers().size());
                           selectedFragment = TripPeopleFragment.newInstance(tripPosition);
                           break;
                       default:
