@@ -5,6 +5,8 @@ import android.location.Location;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
 import nautilussoup.tripplanner.Models.Event;
 import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Trip;
@@ -18,6 +20,8 @@ public class TestTrip {
     private ArrayList tripMembers = new ArrayList();
     private ArrayList events = new ArrayList();
     private Trip testTrip = new Trip(tripName, tripMaxBudget);
+    private GregorianCalendar testStart = new GregorianCalendar(2017, 11, 30, 18, 30);
+    private GregorianCalendar testEnd = new GregorianCalendar(2017, 11, 30, 22, 30);
     private double epsilon = .0001;
 
     @Test
@@ -37,7 +41,7 @@ public class TestTrip {
     @Test
     public void testAddEvent() {
         String name = "Birthday Party";
-        testTrip.addEvent(name, 2017, 11, 30, 18, 30, 2017, 11, 30, 22, 30);
+        testTrip.addEvent(name, testStart, testEnd);
         assertEquals(name, ((Event) testTrip.getEvents().get(0)).getName());
     }
 
@@ -63,7 +67,7 @@ public class TestTrip {
     @Test
     public void testGetEvents() {
         String name = "Birthday Party";
-        testTrip.addEvent(name, 2017, 11, 30, 18, 30, 2017, 11, 30, 22, 30);
+        testTrip.addEvent(name, testStart, testEnd);
         assertEquals(1, testTrip.getEvents().size());
     }
 
