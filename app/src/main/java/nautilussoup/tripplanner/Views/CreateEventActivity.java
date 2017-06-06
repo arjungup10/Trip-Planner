@@ -1,17 +1,29 @@
 package nautilussoup.tripplanner.Views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -39,6 +51,10 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
     SimpleDateFormat dateFormat;
     SimpleDateFormat timeFormat;
     Toolbar myToolbar;
+    PlaceAutocompleteFragment autocompleteFragment;
+    int PLACE_PICKER_REQUEST = 1;
+    int status;
+    Place place;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +120,14 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         startDate.setVersion(DatePickerDialog.Version.VERSION_2);
         endDate = DatePickerDialog.newInstance(this, year, month, day);
         endDate.setVersion(DatePickerDialog.Version.VERSION_2);
+
+        status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (status != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(status)) {
+                GooglePlayServicesUtil.getErrorDialog(status, this,
+                        100).show();
+            }
+        }
     }
 
     @Override
@@ -158,8 +182,7 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
             start.set(Calendar.MINUTE, minute);
 
             eventStartTime.setText(formatDate(timeFormat, start));
-        }
-        else if (view == endTime) {
+        } else if (view == endTime) {
             end.set(Calendar.HOUR_OF_DAY, hourOfDay);
             end.set(Calendar.MINUTE, minute);
             eventEndTime.setText(formatDate(timeFormat, end));
@@ -201,5 +224,29 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
     public String formatDate(SimpleDateFormat fmt, GregorianCalendar calendar) {
         fmt.setCalendar(calendar);
         return fmt.format(calendar.getTime());
+    }
+
+    public void openPlacePicker(View v) {
+        if (status == ConnectionResult.SUCCESS) {
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+            try {
+                startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+            } catch (GooglePlayServicesRepairableException e) {
+                e.printStackTrace();
+            } catch (GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                place = PlacePicker.getPlace(this, data);
+                String toastMsg = String.format("Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                ((TextView) findViewById(R.id.Title)).setText(place.getName());
+            }
+        }
     }
 }

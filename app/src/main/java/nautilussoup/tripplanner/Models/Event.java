@@ -2,6 +2,8 @@ package nautilussoup.tripplanner.Models;
 
 import android.location.Location;
 
+import com.google.android.gms.location.places.Place;
+
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
@@ -10,7 +12,7 @@ public class Event implements Serializable {
     private String eventName;
     private GregorianCalendar startTime;
     private GregorianCalendar endTime;
-    private Location eventLocation;
+    private Place eventLocation;
 
     //Placeholder constructor for view testing
     public Event(String name) {
@@ -25,7 +27,7 @@ public class Event implements Serializable {
         endTime = end;
     }
 
-    public Event(String name, Location targetLocation) {
+    public Event(String name, Place targetLocation) {
         eventName = name;
         startTime = new GregorianCalendar();
         endTime = new GregorianCalendar();
@@ -44,7 +46,7 @@ public class Event implements Serializable {
         return endTime;
     }
 
-    public Location getEventLocation() {
+    public Place getEventLocation() {
         return eventLocation;
     }
 }
