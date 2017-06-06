@@ -30,4 +30,17 @@ public class Person implements Serializable {
     public String toString() {
         return getName();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Person)) {
+            return false;
+        }
+        Person p = (Person) o;
+        return this.getName().equals(p.getName());
+                //&& this.getHome().equals(p.getHome());
+    }
 }
