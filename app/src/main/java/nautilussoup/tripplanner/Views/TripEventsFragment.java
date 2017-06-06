@@ -74,12 +74,12 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mGoogleApiClient = new GoogleApiClient
-                .Builder( getActivity() )
-                .enableAutoManage( getActivity(), 0, this )
-                .addApi( Places.GEO_DATA_API )
-                .addApi( Places.PLACE_DETECTION_API )
-                .addConnectionCallbacks( this )
-                .addOnConnectionFailedListener( this )
+                .Builder(getActivity())
+                .enableAutoManage(getActivity(), 0, this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
                 .build();
     }
 
