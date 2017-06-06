@@ -17,19 +17,22 @@ import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.ItineraryViewHolder> {
     private ArrayList<String> destinations;
+    private ArrayList<String> origins;
     private Context context;
     private RecyclerViewClickListener itemListener;
 
     public class ItineraryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cvItinerary;
         TextView itineraryText;
-        TextView amountPaid;
-        TextView reasonPaid;
+        TextView itineraryText2;
+        TextView itineraryText3;
 
         public ItineraryViewHolder(View itemView) {
             super(itemView);
             cvItinerary = (CardView) itemView.findViewById(R.id.cvItinerary);
             itineraryText = (TextView) itemView.findViewById(R.id.itineraryText);
+            itineraryText2 = (TextView) itemView.findViewById(R.id.itineraryText2);
+            itineraryText3 = (TextView) itemView.findViewById(R.id.itineraryText3);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -52,10 +55,11 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
         }
     }
 
-    public ItineraryAdapter(Context context, ArrayList<String> destinations, RecyclerViewClickListener itemListener) {
+    public ItineraryAdapter(Context context, ArrayList<String> destinations, ArrayList<String> origins, RecyclerViewClickListener itemListener) {
         this.context = context;
         this.itemListener = itemListener;
         this.destinations = destinations;
+        this.origins = origins;
     }
 
     // Create new views (invoked by the layout manager)
@@ -71,6 +75,8 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
     public void onBindViewHolder(ItineraryAdapter.ItineraryViewHolder itineraryViewHolder, int i) {
         String s = destinations.get(i);
         itineraryViewHolder.itineraryText.setText(s);
+        itineraryViewHolder.itineraryText2.setText(origins.get(i));
+        itineraryViewHolder.itineraryText3.setText("HELLO");
     }
 
     @Override

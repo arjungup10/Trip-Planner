@@ -31,7 +31,6 @@ import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 import static android.content.ContentValues.TAG;
 
-
 public class TripItineraryFragment extends Fragment implements RecyclerViewClickListener {
     private Trip tripToDetail;
     private Trips trips;
@@ -40,8 +39,10 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
     private RecyclerView itineraryRecyclerView;
     private RecyclerView.Adapter itineraryAdapter;
     private static String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAOqupl8uwjAiHi7LdgZww5gdIVxp2PL-o";
+    private static String url2 = "https://maps.googleapis.com/maps/api/distancematrix/json?origin=Adelaide,SA&destination=Adelaide,SA&waypoints=optimize:true|Barossa+Valley,SA|Clare,SA|Connawarra,SA|McLaren+Vale,SA&key=AIzaSyAOqupl8uwjAiHi7LdgZww5gdIVxp2PL-o";
     private ProgressDialog pDialog;
     private ArrayList<String> destinations;
+    private ArrayList<String> origins;
 
     public TripItineraryFragment() {}
 
@@ -70,7 +71,9 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
             tripPosition = getArguments().getInt("tripPosition");
             tripToDetail = trips.getTripList().get(tripPosition);
         }
+
         destinations = new ArrayList<>();
+        origins = new ArrayList<>();
 
         //create the recyclerview
         itineraryRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvItinerary);
@@ -82,7 +85,7 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
         itineraryRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        itineraryAdapter = new ItineraryAdapter(rootView.getContext(), destinations, this);
+        itineraryAdapter = new ItineraryAdapter(rootView.getContext(), destinations, origins, this);
         itineraryRecyclerView.setAdapter(itineraryAdapter);
 
         new GetItinerary().execute();
@@ -100,7 +103,6 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
             pDialog.setMessage("Please wait...");
             pDialog.setCancelable(false);
             pDialog.show();
-
         }
 
         @Override
@@ -108,7 +110,7 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
             HttpHandler sh = new HttpHandler();
 
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+            String jsonStr = sh.makeServiceCall(url2);
 
             Log.e(TAG, "Response from url: " + jsonStr);
 
@@ -121,9 +123,13 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
 
                     // looping through All Contacts
                     for (int i = 0; i < dests.length(); i++) {
-                        //JSONObject d = dests.getJSONObject(i);
-                        //Toast.makeText(getActivity(), dests.getString(i), Toast.LENGTH_SHORT).show();
                         destinations.add(dests.getString(i));
+                    }
+
+                    JSONArray origs = jsonObj.getJSONArray("origin_addresses");
+                    for (int i = 0; i < origs.length(); i++) {
+                        origins.add(origs.getString(i));
+                    }
 //
 //                        String dest = c.getString("id");
 ////                        String name = c.getString("name");
@@ -148,7 +154,6 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
 //
 //                        // adding contact to contact list
 //                        contactList.add(contact);
-                    }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     getActivity().runOnUiThread(new Runnable() {
