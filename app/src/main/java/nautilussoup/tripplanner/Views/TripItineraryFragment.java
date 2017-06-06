@@ -39,10 +39,10 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
     private RecyclerView itineraryRecyclerView;
     private RecyclerView.Adapter itineraryAdapter;
     private static String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAOqupl8uwjAiHi7LdgZww5gdIVxp2PL-o";
-    private static String url2 = "https://maps.googleapis.com/maps/api/distancematrix/json?origin=Adelaide,SA&destination=Adelaide,SA&waypoints=optimize:true|Barossa+Valley,SA|Clare,SA|Connawarra,SA|McLaren+Vale,SA&key=AIzaSyAOqupl8uwjAiHi7LdgZww5gdIVxp2PL-o";
+    private static String url2 = "https://maps.googleapis.com/maps/api/directions/json?origin=Boston,MA&destination=Concord,MA&waypoints=Charlestown,MA|Lexington,MA&key=AIzaSyBuRMledPXdN8jaia2lYMGXuxBUGU7Vpr4";
     private ProgressDialog pDialog;
-    private ArrayList<String> destinations;
-    private ArrayList<String> origins;
+    private ArrayList<String> addresses;
+    private ArrayList<String> times;
 
     public TripItineraryFragment() {}
 
@@ -72,8 +72,8 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
             tripToDetail = trips.getTripList().get(tripPosition);
         }
 
-        destinations = new ArrayList<>();
-        origins = new ArrayList<>();
+        addresses = new ArrayList<>();
+        times = new ArrayList<>();
 
         //create the recyclerview
         itineraryRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvItinerary);
@@ -85,7 +85,8 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
         itineraryRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        itineraryAdapter = new ItineraryAdapter(rootView.getContext(), destinations, origins, this);
+        itineraryAdapter = new ItineraryAdapter(rootView.getContext(),
+                addresses, times, this);
         itineraryRecyclerView.setAdapter(itineraryAdapter);
 
         new GetItinerary().execute();
@@ -119,17 +120,27 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
                     // Getting JSON Array node
-                    JSONArray dests = jsonObj.getJSONArray("destination_addresses");
+                    JSONArray routes = jsonObj.getJSONArray("routes");
+                    JSONObject route1 = routes.getJSONObject(0);
+                    JSONArray legs = route1.getJSONArray("legs");
+                    //JSONArray legs = jsonObj.getJSONArray("legs");
 
-                    // looping through All Contacts
-                    for (int i = 0; i < dests.length(); i++) {
-                        destinations.add(dests.getString(i));
-                    }
 
-                    JSONArray origs = jsonObj.getJSONArray("origin_addresses");
-                    for (int i = 0; i < origs.length(); i++) {
-                        origins.add(origs.getString(i));
+                    for (int i = 0; i < legs.length(); i++) {
+                        JSONObject leg = legs.getJSONObject(i);
+                        JSONObject duration = leg.getJSONObject("duration");
+                        if (i == 0) {
+                            addresses.add(leg.getString("start_address"));
+                        } else {
+                            addresses.add(leg.getString("end_address"));
+                        }
+                        times.add(duration.getString("text"));
                     }
+//
+//                    JSONArray origs = jsonObj.getJSONArray("origin_addresses");
+//                    for (int i = 0; i < origs.length(); i++) {
+//                        origins.add(origs.getString(i));
+//                    }
 //
 //                        String dest = c.getString("id");
 ////                        String name = c.getString("name");

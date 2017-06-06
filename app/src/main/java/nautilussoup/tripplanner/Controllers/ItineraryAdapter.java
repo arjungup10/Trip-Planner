@@ -16,10 +16,10 @@ import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 
 public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.ItineraryViewHolder> {
-    private ArrayList<String> destinations;
-    private ArrayList<String> origins;
     private Context context;
     private RecyclerViewClickListener itemListener;
+    private ArrayList<String> times;
+    private ArrayList<String> addresses;
 
     public class ItineraryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         CardView cvItinerary;
@@ -31,7 +31,7 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
             super(itemView);
             cvItinerary = (CardView) itemView.findViewById(R.id.cvItinerary);
             itineraryText = (TextView) itemView.findViewById(R.id.itineraryText);
-            itineraryText2 = (TextView) itemView.findViewById(R.id.itineraryText2);
+            //itineraryText2 = (TextView) itemView.findViewById(R.id.itineraryText2);
             itineraryText3 = (TextView) itemView.findViewById(R.id.itineraryText3);
 
             itemView.setOnClickListener(this);
@@ -55,11 +55,12 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
         }
     }
 
-    public ItineraryAdapter(Context context, ArrayList<String> destinations, ArrayList<String> origins, RecyclerViewClickListener itemListener) {
+    public ItineraryAdapter(Context context, ArrayList<String> addresses, ArrayList<String> times,
+                            RecyclerViewClickListener itemListener) {
         this.context = context;
         this.itemListener = itemListener;
-        this.destinations = destinations;
-        this.origins = origins;
+        this.addresses = addresses;
+        this.times = times;
     }
 
     // Create new views (invoked by the layout manager)
@@ -73,10 +74,16 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ItineraryAdapter.ItineraryViewHolder itineraryViewHolder, int i) {
-        String s = destinations.get(i);
-        itineraryViewHolder.itineraryText.setText(s);
-        itineraryViewHolder.itineraryText2.setText(origins.get(i));
-        itineraryViewHolder.itineraryText3.setText("HELLO");
+        if (i == 0) {
+            itineraryViewHolder.itineraryText.setText(addresses.get(i));
+        } else {
+            itineraryViewHolder.itineraryText.setText(addresses.get(i));
+        }
+        if (i == addresses.size() - 1) {
+            itineraryViewHolder.itineraryText3.setText("");
+        } else {
+            itineraryViewHolder.itineraryText3.setText(times.get(i));
+        }
     }
 
     @Override
@@ -87,7 +94,7 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return destinations.size();
+        return addresses.size();
     }
 }
 
