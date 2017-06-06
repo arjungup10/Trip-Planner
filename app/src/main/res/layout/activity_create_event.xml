@@ -27,7 +27,7 @@
 
             />
 
-        <TextView
+        <EditText
             android:id="@+id/Title"
             android:layout_width="345dp"
             android:layout_height="wrap_content"
@@ -37,16 +37,31 @@
             android:textSize="40sp"
             android:gravity="start"
             android:hint="Event Name"
-            android:onClick="openPlacePicker"/>
+            android:paddingBottom="10dp"/>
 
     </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/eventLocation"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:hint="Location"
+        android:gravity="start"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:onClick="openPlacePicker"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/appbar"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/eventStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="StartDate"
-        android:layout_below="@id/appbar"
+        android:layout_below="@id/eventLocation"
         android:onClick="openStartDatePicker"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
@@ -55,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="StartTime"
-        android:layout_below="@id/appbar"
+        android:layout_below="@id/eventLocation"
         android:layout_alignParentRight="true"
         android:onClick="openStartTimePicker"
         style="@style/Widget.AppCompat.Button.Borderless"/>

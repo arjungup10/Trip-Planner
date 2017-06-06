@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 
 import org.w3c.dom.Text;
 
@@ -80,9 +87,6 @@ public class TripDetails extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
-
-        //Deserialize the trip object
-        //tripToDetail = (Trip)this.getIntent().getSerializableExtra(TripActivity.SER_KEY);
 
         //Get the clicked adapter position
         trips = Trips.getInstance();
@@ -154,35 +158,8 @@ public class TripDetails extends AppCompatActivity implements
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        if (selectedFragment.getClass().equals(TripPaymentsFragment.class)) {
-//            MenuInflater inflater = getMenuInflater();
-//            inflater.inflate(R.menu.payment_details_menu, menu);
-//        }
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.calcPayments) {
-//            Toast.makeText(this, "Calc Payments", Toast.LENGTH_SHORT).show();
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     public boolean openCalculatePayments(View v) {
         ((TripPaymentsFragment) selectedFragment).calculatePayments();
         return true;
     }
-
 }

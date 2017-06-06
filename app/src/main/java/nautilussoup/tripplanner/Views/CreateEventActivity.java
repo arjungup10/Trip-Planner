@@ -168,6 +168,7 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
             returnIntent.putExtra("EventNameField", eventNameField.getText().toString());
             returnIntent.putExtra("StartInfo", start);
             returnIntent.putExtra("EndInfo", end);
+            returnIntent.putExtra("Address", place.getAddress());
             setResult(RESULT_OK, returnIntent);
         } else {
             setResult(RESULT_CANCELED, returnIntent);
@@ -243,9 +244,10 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 place = PlacePicker.getPlace(this, data);
-                String toastMsg = String.format("Place: %s", place.getName());
-                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                //String toastMsg = String.format("Place: %s", place.getName());
+                //Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
                 ((TextView) findViewById(R.id.Title)).setText(place.getName());
+                ((TextView) findViewById(R.id.eventLocation)).setText(place.getAddress());
             }
         }
     }

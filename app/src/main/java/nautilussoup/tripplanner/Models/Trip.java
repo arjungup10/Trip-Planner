@@ -43,6 +43,11 @@ public class Trip implements Serializable {
         events.add(new Event(name, start, end));
     }
 
+    public void addEvent(String name, String placeId, GregorianCalendar start, GregorianCalendar end) {
+        events.add(new Event(name, placeId, start, end));
+    }
+
+
     public String getTripName() {
         return tripName;
     }
