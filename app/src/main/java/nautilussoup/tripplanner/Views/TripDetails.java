@@ -86,7 +86,9 @@ public class TripDetails extends AppCompatActivity implements
 
         //Get the clicked adapter position
         trips = Trips.getInstance();
-        int tripPosition = getIntent().getExtras().getInt("tripPosition");
+        if (getIntent().hasExtra("tripPosition")) {
+            tripPosition = getIntent().getExtras().getInt("tripPosition");
+        }
         tripToDetail = trips.getTripList().get(tripPosition);
 
         // Set up toolbar

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import nautilussoup.tripplanner.Controllers.CalculatePaymentsAdapter;
@@ -30,6 +31,7 @@ public class CalculatePaymentsActivity extends AppCompatActivity implements Recy
     private RecyclerView.Adapter calcPaymentAdapter;
     private int adapterPosition;
     private ArrayList<Repayment> repayments;
+    private ArrayList<Pair<Person, Pair<Person, Double>>> adapterRepays;
 
 
     @Override
@@ -63,7 +65,7 @@ public class CalculatePaymentsActivity extends AppCompatActivity implements Recy
         calcPaymentRecyclerView.setLayoutManager(llm);
 
         // specify an adapter (see also next example)
-        calcPaymentAdapter = new CalculatePaymentsAdapter(getBaseContext(), repayments, this);
+        calcPaymentAdapter = new CalculatePaymentsAdapter(getBaseContext(), adapterRepays, this);
         calcPaymentRecyclerView.setAdapter(calcPaymentAdapter);
     }
 
@@ -92,6 +94,7 @@ public class CalculatePaymentsActivity extends AppCompatActivity implements Recy
         ArrayList<Payment> payments = tripToDetail.getTripBudget().getPayments();
         ArrayList<Person> people = tripToDetail.getTripMembers();
         repayments = new ArrayList<>();
+        adapterRepays = new ArrayList<>();
 
         for (Person p : people) {
             repayments.add(new Repayment(p, 0));
@@ -103,7 +106,6 @@ public class CalculatePaymentsActivity extends AppCompatActivity implements Recy
                     r.addToAmount(p.getAmount());
                 }
             }
-            Toast.makeText(this, r.getPersonPaying() + ": " + r.getAmount(), Toast.LENGTH_SHORT).show();
         }
 
         for (Repayment r : repayments) {
@@ -111,14 +113,16 @@ public class CalculatePaymentsActivity extends AppCompatActivity implements Recy
                 double diff = average - r.getAmount();
                 int i = 0;
                 while (diff >= 0 && i < repayments.size()) {
-                    Toast.makeText(this, r.getPersonPaying().getName(), Toast.LENGTH_SHORT).show();
                     if (repayments.get(i).getAmount() > average) {
-                        Toast.makeText(this, r.getPersonPaying().getName(), Toast.LENGTH_SHORT).show();
                         double repay = repayments.get(i).getAmount() - average;
                         if (diff >= repay) {
                             r.addPersonReceving(repayments.get(i).getPersonPaying(), repay);
+                            adapterRepays.add(new Pair(r.getPersonPaying(),
+                                    new Pair(repayments.get(i).getPersonPaying(), repay)));
                         } else {
                             r.addPersonReceving(repayments.get(i).getPersonPaying(), diff);
+                            adapterRepays.add(new Pair(r.getPersonPaying(),
+                                    new Pair(repayments.get(i).getPersonPaying(), diff)));
                         }
                         repayments.get(i).addToAmount(-diff);
                         r.addToAmount(diff);

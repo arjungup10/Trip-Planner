@@ -33,16 +33,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/calc_Payment_Reason"
+                android:id="@+id/calc_Payment_Person_Paying"
                 android:textSize="30sp"
                 />
 
 
             <TextView
-                android:layout_below="@+id/calc_Payment_Reason"
+                android:layout_below="@+id/calc_Payment_Person_Paying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/calc_Payment_Person_Name"
+                android:id="@+id/calc_Payment_Person_Receiving"
                 />
 
         </RelativeLayout>

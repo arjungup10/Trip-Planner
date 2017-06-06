@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
+import nautilussoup.tripplanner.Views.TripActivity;
 import nautilussoup.tripplanner.Views.TripDetails;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
@@ -38,7 +41,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         public void onClick(View v) {
             itemListener.recyclerViewListClicked(v, this.getAdapterPosition());
             Intent tripDetailsIntent = new Intent(context, TripDetails.class);
-            tripDetailsIntent.putExtra("tripPosition", getAdapterPosition());
+            tripDetailsIntent.putExtra("tripPosition", (Integer)getAdapterPosition());
             //Bundle mBundle = new Bundle();
             //mBundle.putSerializable(TripActivity.SER_KEY, trips.get(getAdapterPosition()));
             //tripDetailsIntent.putExtras(mBundle);

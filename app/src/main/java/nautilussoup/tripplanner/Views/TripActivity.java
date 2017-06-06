@@ -77,7 +77,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
         }
 
         //Set up singleton instance of trips
-        Trips trips = Trips.getInstance();
+        trips = Trips.getInstance();
         trips.setTripList(tripList);
 
         // create relevant toolbar
@@ -114,7 +114,6 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
 
     public void addTrip(Trip tripToAdd) {
         tripList.add(tripToAdd);
-        //trips.setTripList(tripList);
         tripAdapter.notifyDataSetChanged();
         updateTrips();
     }
@@ -172,7 +171,6 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
             if (data.hasExtra(newTripNameId) && data.hasExtra(newTripBudgetId)) {
                 addTrip(new Trip(data.getStringExtra(newTripNameId),
                         Double.parseDouble((data.getStringExtra(newTripBudgetId)))));
-
             }
         }
     }
@@ -182,7 +180,7 @@ public class TripActivity extends AppCompatActivity implements RecyclerViewClick
             FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(tripList);
-            trips.setTripList(tripList);
+            Trips.getInstance().setTripList(tripList);
 
             fos.close();
             oos.close();
