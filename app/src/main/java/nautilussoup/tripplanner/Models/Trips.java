@@ -18,8 +18,8 @@ public class Trips implements Serializable {
         return instance;
     }
 
-    public void setTripList(ArrayList<Trip> TripList) {
-        this.tripList = TripList;
+    public void setTripList(ArrayList<Trip> tripList) {
+        this.tripList = tripList;
     }
 
     public ArrayList<Trip> getTripList() {
