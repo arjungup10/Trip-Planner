@@ -29,16 +29,18 @@ The system will save data internally to the user's device. The application will 
 
 Screen Captures
 ---------------
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripScreen.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventsScreen.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventLocation.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createEvent.png" width="480">
+<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripScreen.png?raw=true" width="480">
+
+| <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventsScreen.png" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventLocation.png" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createEvent.png" width="480"> |
+|:---:|:---:|:---:|
+
 <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/itinerary.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/peopleScreen.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPerson.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Payments.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPayment.png" width="480">
-<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Repayments.png" width="480">
+
+| <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/peopleScreen.png" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPerson.png" width="480"> |
+|:---:|:---:|
+
+| <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Payments.png" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPayment.png" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Repayments.png" width="480"> |
+|:---:|:---:|:---:|
 
 
 
