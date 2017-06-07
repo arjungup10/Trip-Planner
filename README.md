@@ -12,7 +12,7 @@ Planned Features
 * Notify users when to leave for their next event
 * Assist users in finding things to do in an area
 * Allow users to set a budget and keep track of payments
-* Assist users in evenly dividing costs between individuals of a group 
+* Assist users in evenly dividing costs between individuals of a group
 * Allow users to share the itinerary with others
 
 
@@ -21,13 +21,12 @@ System Architecture
 The system will save data internally to the user's device. In the future, database integration seems likely. the application will communicate with Google Maps API in order to receive time estimates. As location, will be necessary for the functionality of the application, it will leverage Google Maps and Google Play Services in order to properly notify the user.
 
 Below is a basic system architecture diagram of the program. As the program develops this is very likely to change.
-![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Software%20Arch%20Diagram.png)
+![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/SoftwareArchDiagram.png)
 
-Below is an initial class diagram of the project. Similar to the architecture diagram, this is subject to change as the project changes and evolves. 
-![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripPlanner%20Class%20Diagram.png)
+Below is an initial class diagram of the project. Similar to the architecture diagram, this is subject to change as the project changes and evolves.
+![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/ClassDiagram.png)
 
 Screen Captures
 ---------------
-![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Trip%20Screen.png)
-![alt-text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Payment%20Screen.png)
-
+![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripScreen.png)
+![alt-text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/PaymentScreen.png)
