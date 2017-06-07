@@ -24,6 +24,7 @@ import java.util.HashMap;
 import nautilussoup.tripplanner.Controllers.HttpHandler;
 import nautilussoup.tripplanner.Controllers.ItineraryAdapter;
 import nautilussoup.tripplanner.Controllers.PaymentAdapter;
+import nautilussoup.tripplanner.Models.Event;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;
 import nautilussoup.tripplanner.R;
@@ -38,7 +39,9 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
     private int tripPosition;
     private RecyclerView itineraryRecyclerView;
     private RecyclerView.Adapter itineraryAdapter;
-    private static String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyAOqupl8uwjAiHi7LdgZww5gdIVxp2PL-o";
+    private String home = "3326+Sanderling+Dr,Fremont,CA";
+    private String baseURL = "https://maps.googleapis.com/maps/api/directions/json?";
+    private static String url = "https://maps.googleapis.com/maps/api/directions/json?origin=Adelaide,SA&destination=Adelaide,SA&waypoints=optimize:true|Barossa+Valley,SA|Clare,SA|Connawarra,SA|McLaren+Vale,SA&key=AIzaSyBuRMledPXdN8jaia2lYMGXuxBUGU7Vpr4";
     private static String url2 = "https://maps.googleapis.com/maps/api/directions/json?origin=Boston,MA&destination=Concord,MA&waypoints=Charlestown,MA|Lexington,MA&key=AIzaSyBuRMledPXdN8jaia2lYMGXuxBUGU7Vpr4";
     private ProgressDialog pDialog;
     private ArrayList<String> addresses;
@@ -74,6 +77,19 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
 
         addresses = new ArrayList<>();
         times = new ArrayList<>();
+
+        if (tripToDetail.getEvents().size() > 0) {
+
+            baseURL = baseURL.concat("origin=3326+Sanderling+Dr,Fremont,CA&destination=3326+Sanderling+Dr,Fremont,CA&waypoints=optimize:true");
+
+            for (Event e : tripToDetail.getEvents()) {
+                baseURL = baseURL.concat("|" + e.getEventLocationId());
+            }
+
+            baseURL = baseURL.concat("&key=AIzaSyBuRMledPXdN8jaia2lYMGXuxBUGU7Vpr4");
+        }
+
+        Log.e(TAG, baseURL);
 
         //create the recyclerview
         itineraryRecyclerView = (RecyclerView) rootView.findViewById(R.id.rvItinerary);
@@ -111,7 +127,7 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
             HttpHandler sh = new HttpHandler();
 
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url2);
+            String jsonStr = sh.makeServiceCall(baseURL);
 
             Log.e(TAG, "Response from url: " + jsonStr);
 
@@ -131,6 +147,7 @@ public class TripItineraryFragment extends Fragment implements RecyclerViewClick
                         JSONObject duration = leg.getJSONObject("duration");
                         if (i == 0) {
                             addresses.add(leg.getString("start_address"));
+                            addresses.add(leg.getString("end_address"));
                         } else {
                             addresses.add(leg.getString("end_address"));
                         }

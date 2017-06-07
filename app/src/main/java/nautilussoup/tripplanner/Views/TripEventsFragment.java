@@ -187,7 +187,7 @@ public class TripEventsFragment extends Fragment implements RecyclerViewClickLis
         if (REQUEST_CODE_CREATE_EVENT == requestCode) {
             if (Activity.RESULT_OK == resultCode) {
                 if (data.hasExtra("EventNameField") && data.hasExtra("StartInfo") &&
-                        data.hasExtra("EndInfo") && data.hasExtra("place")) {
+                        data.hasExtra("EndInfo") && data.hasExtra("Address")) {
                     tripToDetail.addEvent(data.getStringExtra("EventNameField"),
                             data.getStringExtra("Address"),
                         (GregorianCalendar) data.getSerializableExtra("StartInfo"),

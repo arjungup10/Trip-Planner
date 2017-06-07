@@ -74,11 +74,7 @@ public class ItineraryAdapter  extends RecyclerView.Adapter<ItineraryAdapter.Iti
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ItineraryAdapter.ItineraryViewHolder itineraryViewHolder, int i) {
-        if (i == 0) {
-            itineraryViewHolder.itineraryText.setText(addresses.get(i));
-        } else {
-            itineraryViewHolder.itineraryText.setText(addresses.get(i));
-        }
+        itineraryViewHolder.itineraryText.setText(addresses.get(i));
         if (i == addresses.size() - 1) {
             itineraryViewHolder.itineraryText3.setText("");
         } else {
