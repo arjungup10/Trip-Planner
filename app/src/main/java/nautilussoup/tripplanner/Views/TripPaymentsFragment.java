@@ -149,6 +149,7 @@ public class TripPaymentsFragment extends Fragment implements RecyclerViewClickL
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
+        adapterPosition = position;
     }
 
     public interface OnFragmentInteractionListener {
