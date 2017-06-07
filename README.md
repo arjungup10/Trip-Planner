@@ -1,4 +1,4 @@
-**Trip Planner**
+**Trip Planner** <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/app/src/main/res/mipmap-xhdpi/ic_launcher.png" height="64">
 ================
 
 **Introduction**
@@ -19,15 +19,43 @@ As an exploration into Android development and software processes, this project 
 
 **System Architecture**
 -----------------------
-The system will save data internally to the user's device. The application will communicate with Google Maps API in order to receive time estimates. As location, will be necessary for the functionality of the application, it will leverage Google Maps and Google Play Services in order to properly notify the user.
+The program currently saves data only internally to the user's device. It communicates with Google Maps API in order to receive time estimates and the optimized itinerary. It leverages the Google Places API in order to assist users with selecting locations for events. 
 
-*Deployment diagram of the program. As the program develops this is likely to change.*
-![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/SoftwareArchDiagram.png)
+*Design Patterns*
+* MVP: Separation of responsibilities of each part of the system
+* Singleton: Singleton allows easy access of information throughout the program, additionally allowing for easy reading/writing
+* Adapter: Communicate information between views and models
 
-*Class diagram of the project. Similar to the deployment diagram, this is subject to change*
-![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/ClassDiagram.png)
+
+*Deployment Diagram*
+
+![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/SoftwareArchDiagram.png?raw=true)
+
+
+*Class Diagram*
+
+![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/ClassDiagram.png?raw=true)
+
 
 Screen Captures
 ---------------
-![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripScreen.png)
-![alt-text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/PaymentScreen.png)
+<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripScreen.png?raw=true" width="480">
+
+| <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventsScreen.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventLocation.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createEvent.png?raw=true" width="480"> |
+|:---:|:---:|:---:|
+
+<img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/itinerary.png?raw=true" width="480">
+
+| <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/peopleScreen.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPerson.png?raw=true" width="480"> |
+|:---:|:---:|
+
+| <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Payments.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPayment.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Repayments.png?raw=true" width="480"> |
+|:---:|:---:|:---:|
+
+
+
+
+
+
+
+
