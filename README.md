@@ -22,7 +22,7 @@ As an exploration into Android development and software processes, this project 
 The program currently saves data only internally to the user's device. It communicates with Google Maps API in order to receive time estimates and the optimized itinerary. It leverages the Google Places API in order to assist users with selecting locations for events. 
 
 *Design Patterns*
-* MVP: Separation of responsibilities of each part of the system
+* MVC: Separation of responsibilities of each part of the system
 * Singleton: Singleton allows easy access of information throughout the program, additionally allowing for easy reading/writing
 * Adapter: Communicate information between views and models
 
