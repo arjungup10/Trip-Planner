@@ -39,15 +39,30 @@ The program currently saves data only internally to the user's device. It commun
 
 Screen Captures
 ---------------
+
+*Displays all created trips*
+
 <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/TripScreen.png?raw=true" width="480">
+
+
+*Event screens and creation screens*
 
 | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventsScreen.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/eventLocation.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createEvent.png?raw=true" width="480"> |
 |:---:|:---:|:---:|
 
+
+*Example itinerary*
+
 <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/itinerary.png?raw=true" width="480">
+
+
+*People screens and creation screens*
 
 | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/peopleScreen.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPerson.png?raw=true" width="480"> |
 |:---:|:---:|
+
+
+*Payment and repayments screens
 
 | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Payments.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/createPayment.png?raw=true" width="480"> | <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/Repayments.png?raw=true" width="480"> |
 |:---:|:---:|:---:|
