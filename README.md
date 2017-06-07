@@ -21,7 +21,7 @@ As an exploration into Android development and software processes, this project 
 -----------------------
 The system will save data internally to the user's device. The application will communicate with Google Maps API in order to receive time estimates. As location, will be necessary for the functionality of the application, it will leverage Google Maps and Google Play Services in order to properly notify the user.
 
-*Deployment diagram of the program. As the program develops this is very likely to change.*
+*Deployment diagram of the program. As the program develops this is likely to change.*
 ![alt text](https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/ReadMeFiles/SoftwareArchDiagram.png)
 
 *Class diagram of the project. Similar to the deployment diagram, this is subject to change*
