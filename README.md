@@ -1,4 +1,4 @@
-**Trip Planner** <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/app/src/main/res/mipmap-xhdpi/ic_launcher.png" height="64">
+**Trip Planner** <img src="https://github.com/cpe305Spring17/spring2017-project-arjungup10/blob/master/app/src/main/res/mipmap-xhdpi/ic_launcher.png?raw=true" height="64">
 ================
 
 **Introduction**
