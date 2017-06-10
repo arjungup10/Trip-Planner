@@ -3,6 +3,7 @@ package nautilussoup.tripplanner.Models;
 import android.location.Location;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Person implements Serializable {
     private static final long serialVersionUID = 127L;
@@ -42,4 +43,11 @@ public class Person implements Serializable {
         Person p = (Person) o;
         return this.getName().equals(p.getName()) && this.getHome().equals(p.getHome());
     }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, home);
+    }
+
 }
