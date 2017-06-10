@@ -10,11 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import nautilussoup.tripplanner.Controllers.CalculatePaymentsAdapter;
-import nautilussoup.tripplanner.Controllers.TripAdapter;
 import nautilussoup.tripplanner.Models.Payment;
 import nautilussoup.tripplanner.Models.Person;
 import nautilussoup.tripplanner.Models.Repayment;

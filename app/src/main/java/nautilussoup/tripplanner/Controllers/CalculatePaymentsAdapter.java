@@ -12,10 +12,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import nautilussoup.tripplanner.Models.Payment;
 import nautilussoup.tripplanner.Models.Person;
-import nautilussoup.tripplanner.Models.Repayment;
-import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 

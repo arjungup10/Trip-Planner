@@ -19,11 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import nautilussoup.tripplanner.Controllers.HttpHandler;
 import nautilussoup.tripplanner.Controllers.ItineraryAdapter;
-import nautilussoup.tripplanner.Controllers.PaymentAdapter;
 import nautilussoup.tripplanner.Models.Event;
 import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.Models.Trips;

@@ -1,10 +1,5 @@
 package nautilussoup.tripplanner.Models;
 
-import android.location.Location;
-
-import com.google.android.gms.location.places.GeoDataApi;
-import com.google.android.gms.location.places.Place;
-
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 

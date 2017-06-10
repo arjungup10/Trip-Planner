@@ -1,8 +1,5 @@
 package nautilussoup.tripplanner;
 
-
-import android.location.Location;
-
 import org.junit.Test;
 
 import nautilussoup.tripplanner.Models.Person;

@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import nautilussoup.tripplanner.Models.Payment;
-import nautilussoup.tripplanner.Models.Trip;
 import nautilussoup.tripplanner.R;
 import nautilussoup.tripplanner.RecyclerViewClickListener;
 

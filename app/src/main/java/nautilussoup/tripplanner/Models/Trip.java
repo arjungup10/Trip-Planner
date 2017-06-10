@@ -1,7 +1,5 @@
 package nautilussoup.tripplanner.Models;
 
-import android.location.Location;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
