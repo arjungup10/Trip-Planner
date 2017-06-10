@@ -7,13 +7,13 @@ import java.io.Serializable;
 public class Person implements Serializable {
     private static final long serialVersionUID = 127L;
     private String name;
-    private Location home;
+    private String home;
 
     public Person(String name) {
         this.name = name;
     }
 
-    public Person(String name, Location targetLocation) {
+    public Person(String name, String targetLocation) {
         this.name = name;
         home = targetLocation;
     }
@@ -22,7 +22,7 @@ public class Person implements Serializable {
         return name;
     }
 
-    public Location getHome() {
+    public String getHome() {
         return home;
     }
 
@@ -40,7 +40,6 @@ public class Person implements Serializable {
             return false;
         }
         Person p = (Person) o;
-        return this.getName().equals(p.getName());
-                //&& this.getHome().equals(p.getHome());
+        return this.getName().equals(p.getName()) && this.getHome().equals(p.getHome());
     }
 }

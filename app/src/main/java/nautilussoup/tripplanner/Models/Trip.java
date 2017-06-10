@@ -10,19 +10,18 @@ public class Trip implements Serializable {
     private static final long serialVersionUID = 56L;
     private String tripName;
     private Budget tripBudget;
-    private Location tripLocation;
+    private String tripLocation;
     private ArrayList<Person> tripMembers;
     private ArrayList<Event> events;
 
     public Trip(String name, double maxBudget) {
         tripName = name;
         tripBudget = new Budget(maxBudget);
-        Location TripLocation;
         tripMembers = new ArrayList<Person>();
         events = new ArrayList<Event>();
     }
 
-    public Trip(String name, double maxBudget, Location targetLocation) {
+    public Trip(String name, double maxBudget, String targetLocation) {
         tripName = name;
         tripBudget = new Budget(maxBudget);
         tripLocation = targetLocation;
