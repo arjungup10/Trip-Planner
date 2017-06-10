@@ -34,6 +34,7 @@ import java.util.GregorianCalendar;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
+import nautilussoup.tripplanner.Controllers.HttpHandler;
 import nautilussoup.tripplanner.R;
 
 public class CreateEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
@@ -55,6 +56,7 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
     int PLACE_PICKER_REQUEST = 1;
     int status;
     Place place;
+    private static final String TAG = CreateEventActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,9 +235,9 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
             try {
                 startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
             } catch (GooglePlayServicesRepairableException e) {
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage());
             } catch (GooglePlayServicesNotAvailableException e) {
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage());
             }
         }
     }
