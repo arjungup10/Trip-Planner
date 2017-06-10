@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestPerson {
     private String testName = "Elyse Munemura";
-    private Location testLocation = new Location(""); //provider name is unnecessary
+    private String testLocation = "Hundred Acre Woods"; //provider name is unnecessary
     private Person testPerson = new Person(testName, testLocation);
 
     @Test
